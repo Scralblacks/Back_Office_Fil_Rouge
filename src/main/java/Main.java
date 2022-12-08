@@ -96,11 +96,6 @@ public class Main {
             System.out.println("User already exists !");
         }
 
-
-
-
-
-
        /* while (true) {
             System.out.println("1 - Voir le planning et ses tâches");
             System.out.println("2 - Voir une tâche en particulier");
