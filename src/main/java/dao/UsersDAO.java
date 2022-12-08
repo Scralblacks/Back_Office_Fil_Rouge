@@ -20,7 +20,9 @@ public class UsersDAO implements CrudDAO<Users> {
         EntityManager em = emf.createEntityManager();
         List<Users> users = null;
         try {
-            TypedQuery<Users> query = em.createQuery("select u from Users u", Users.class);
+            TypedQuery<Users> query = em.createQuery("select u from Users u " +
+                    "left join fetch u.roles " +
+                    "left join fetch u.share ", Users.class);
             users = query.getResultList();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -37,10 +39,10 @@ public class UsersDAO implements CrudDAO<Users> {
         Users user = null;
         try {
             TypedQuery<Users> query = em.createQuery("select u from Users u " +
-                    "join fetch u.planning " +
-                    "join fetch u.address " +
-                    "join fetch u.roles " +
-                    "join fetch u.share " +
+                  /*  "join fetch u.planning " +
+                    "join fetch u.address " +*/
+                    "left join fetch u.roles " +
+                    "left join fetch u.share " +
                     "WHERE u.idUser=:id",
                     Users.class);
             query.setParameter("id",id);
@@ -89,7 +91,7 @@ public class UsersDAO implements CrudDAO<Users> {
             userToUpdate.setPassword(element.getPassword());
             userToUpdate.setEmail(element.getEmail());
             userToUpdate.setActivated(element.isActivated());
-            userToUpdate.setRoles(element.getRoleList());
+            userToUpdate.setRoles(element.getRoles());
             em.merge(userToUpdate);
             et.commit();
         } catch (Exception e) {
@@ -112,7 +114,7 @@ public class UsersDAO implements CrudDAO<Users> {
             et.begin();
             Address a = em.find(Address.class, element.getAddress().getIdAddress());
             Planning p = em.find(Planning.class, element.getPlanning().getIdPlanning());
-            List<Long> idsRole = element.getRoleList().stream().map(role -> role.getIdRole()).collect(Collectors.toList());
+            List<Long> idsRole = element.getRoles().stream().map(role -> role.getIdRole()).collect(Collectors.toList());
             TypedQuery<Role> query = em.createQuery("select r from Role r WHERE r.idRole in :idsRole", Role.class);
             query.setParameter("idsRole", idsRole);
             Set<Role> r = new HashSet<Role>(query.getResultList());

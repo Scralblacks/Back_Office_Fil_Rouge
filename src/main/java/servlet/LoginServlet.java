@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 
         if(Arrays.equals(user.get().getPassword(), hash)
                 && user.isPresent()
-                && (user.get().getRoleList().contains(admin) || user.get().getRoleList().contains(superAdmin))
+                && (user.get().getRoles().contains(admin) || user.get().getRoles().contains(superAdmin))
         ){
             user.get().setDateLastLogin(LocalDate.now());
             usersDAO.update(user.get());

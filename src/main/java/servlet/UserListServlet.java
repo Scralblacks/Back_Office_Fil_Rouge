@@ -28,16 +28,15 @@ public class UserListServlet extends HttpServlet {
 
         Role superAdmin = roleDAO.findById(2L).get();
         Users user = usersDAO.findById((Long) session.getAttribute("userId")).get();
-        user.getRoleList().size();
 
-        boolean isSuperAdmin = user.getRoleList().contains(superAdmin);
+        boolean isSuperAdmin = user.getRoles().contains(superAdmin);
 
         List<Users> users = usersDAO.findAll();
 
-        req.setAttribute("users", user);
+        req.setAttribute("users", users);
         req.setAttribute("isSuperAdmin", isSuperAdmin);
 
-        req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/dashboard.jsp").forward(req, resp);
 
     }
 }

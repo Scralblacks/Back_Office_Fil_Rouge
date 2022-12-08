@@ -40,26 +40,26 @@
                     <input type="date" value="${user.dateLastLogin}">
                 </tr>
                 <tr>
-                    <c:forEach var="role" items="${user.roles}">
+                    <c:forEach var="role" items="${user.roles}" >
                         ${role.name}
                     </c:forEach>
                 </tr>
                 <tr>
                     <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
-                        <input type="hidden" value="${user.id}" name="idUser">
+                        <input type="hidden" value="${item.idUser}" name="idUser">
                         <button class="btn btn-update">Update user</button>
                     </form>
                 </tr>
                 <tr>
                     <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
-                        <input type="hidden" value="${user.id}" name="idUser">
+                        <input type="hidden" value="${item.idUser}" name="idUser">
                         <button class="btn btn-delete">Delete user</button>
                     </form>
                 </tr>
                 <c:if test="${isSuperAdmin}">
                     <tr>
                         <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
-                            <input type="hidden" value="${user.id}" name="idUser">
+                            <input type="hidden" value="${user.idUser}" name="idUser">
                             <button class="btn btn-delete">Upgrade to admin</button>
                         </form>
                     </tr>

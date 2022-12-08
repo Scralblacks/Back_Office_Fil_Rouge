@@ -102,7 +102,7 @@ public class Users {
         this.password = password;
     }
 
-    public Set<Role> getRoleList() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

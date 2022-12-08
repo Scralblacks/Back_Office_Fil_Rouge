@@ -11,10 +11,10 @@
 </c:if>
 <form method="post" action="${pageContext.request.contextPath}/admin/login">
     <label for="email">Email : </label>
-    <input id="email" name="email" type="text" placeholder="email@email.com">
+    <input id="email" name="email" type="text" placeholder="email@email.com" value="fabrice@fabrice.fr">
 
     <label for="password">Password : </label>
-    <input id="password" name="password" type="password" placeholder="Password">
+    <input id="password" name="password" type="password" placeholder="Password" value="azerty">
 
     <button>Log in</button>
 </form>

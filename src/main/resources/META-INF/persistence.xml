@@ -14,11 +14,18 @@
             <!-- update : met à jour le schéma en comparant les entités et le schéma actuel de la base de données -->
             <!-- create : supprime le schéma de la base de données puis utilise les entités pour le recréer -->
             <!-- create-drop : effectue l'option create à la fermeture de l'entityManagerFactory -->
+<!--            <property name="hibernate.hbm2ddl.auto" value="validate"/>-->
+<!--            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/planning_test_jpa"/>-->
+<!--            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--            <property name="hibernate.connection.username" value="root"/>-->
+<!--            <property name="hibernate.connection.password" value=""/>-->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+<!--            <property name="hibernate.show_sql" value = "true" />-->
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/planning_test_jpa"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.password" value="FormationM2i"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value = "true" />
 
