@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/admin/dashbord")
 public class UserListServlet extends HttpServlet {
@@ -27,10 +28,13 @@ public class UserListServlet extends HttpServlet {
 
         Role superAdmin = roleDAO.findById(2L).get();
         Users user = usersDAO.findById((Long) session.getAttribute("userId")).get();
+        user.getRoleList().size();
 
         boolean isSuperAdmin = user.getRoleList().contains(superAdmin);
 
-        req.setAttribute("users", usersDAO.findAll());
+        List<Users> users = usersDAO.findAll();
+
+        req.setAttribute("users", user);
         req.setAttribute("isSuperAdmin", isSuperAdmin);
 
         req.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(req, resp);

@@ -37,10 +37,10 @@ public class UsersDAO implements CrudDAO<Users> {
         Users user = null;
         try {
             TypedQuery<Users> query = em.createQuery("select u from Users u " +
-                    "left join fetch u.planning " +
-                    "left join fetch u.address " +
-                    "left join fetch u.roles " +
-                    "left join fetch u.share " +
+                    "join fetch u.planning " +
+                    "join fetch u.address " +
+                    "join fetch u.roles " +
+                    "join fetch u.share " +
                     "WHERE u.idUser=:id",
                     Users.class);
             query.setParameter("id",id);
@@ -90,7 +90,7 @@ public class UsersDAO implements CrudDAO<Users> {
             userToUpdate.setEmail(element.getEmail());
             userToUpdate.setActivated(element.isActivated());
             userToUpdate.setRoles(element.getRoleList());
-            em.persist(userToUpdate);
+            em.merge(userToUpdate);
             et.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +139,8 @@ public class UsersDAO implements CrudDAO<Users> {
         EntityManager em = emf.createEntityManager();
         List<Users> usersList = null;
         try {
-            TypedQuery<Users> query = em.createQuery("select u from Users u WHERE u.email=:e", Users.class);
+            TypedQuery<Users> query = em.createQuery("select u from Users u Join FETCH u.roles " +
+                    "WHERE u.email=:e ", Users.class);
             query.setParameter("e", element.getEmail());
             usersList = query.getResultList();
         } catch (NoResultException e) {

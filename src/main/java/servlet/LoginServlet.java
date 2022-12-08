@@ -10,14 +10,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import utils.Password_Hasher;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
@@ -35,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         if(session != null && session.getAttribute("userId") != null){
-//            resp.sendRedirect(UserListServlet.URL);
+            resp.sendRedirect(UserListServlet.URL);
         } else {
             req.getRequestDispatcher("/WEB-INF/login_admin.jsp").forward(req, resp);
         }
@@ -44,33 +41,25 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession(false);
-
         Users checkUser = new Users(req.getParameter("email"));
         Optional<Users> user = usersDAO.checkIfExists(checkUser);
         String password = req.getParameter("password");
         boolean isAdmin = false;
 
         // For security purpose, we use a java security lib to hash the user password
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
-        SecretKeyFactory factory = null;
+        byte[] hash = new byte[16];
         try {
-            factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            hash = new Password_Hasher().h_password(password);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
-        }
-        byte[] hash = new byte[0];
-        try {
-            hash = factory.generateSecret(spec).getEncoded();
         } catch (InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
 
         Role admin = roleDAO.findById(2L).get();
+        System.out.println(admin);
         Role superAdmin = roleDAO.findById(3L).get();
+        System.out.println(superAdmin);
 
         if(Arrays.equals(user.get().getPassword(), hash)
                 && user.isPresent()
@@ -83,7 +72,7 @@ public class LoginServlet extends HttpServlet {
             sessionStart.setAttribute("userId", user.get().getIdUser());
             // Expiration of session after 30min
             sessionStart.setMaxInactiveInterval(30*60);
-//            resp.sendRedirect(UserListServlet.URL);
+            resp.sendRedirect(UserListServlet.URL);
 
         } else {
             req.setAttribute("loginFail", true);

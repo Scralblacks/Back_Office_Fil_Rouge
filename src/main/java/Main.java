@@ -3,6 +3,7 @@ import dao.CrudDAO;
 import dao.DaoFactory;
 import jakarta.persistence.EntityManagerFactory;
 import utils.ConnectionManager;
+import utils.Password_Hasher;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -65,12 +66,14 @@ public class Main {
             }
 
             // For security purpose, we use a java security lib to hash the user password
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-            KeySpec spec = new PBEKeySpec("azerty".toCharArray(), salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
+            byte[] hash = new byte[16];
+            try {
+                hash = new Password_Hasher().h_password("azerty");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeySpecException e) {
+                throw new RuntimeException(e);
+            }
 
             // Completing the user entity
             user.setPseudo("Fabrice");
@@ -80,6 +83,7 @@ public class Main {
             user.setPhoto(null);
             user.addRole(basicRole);
             user.addRole(adminRole);
+            user.addRole(superAdminRole);
             user.setActivated(true);
 
             // Adding user to the database
