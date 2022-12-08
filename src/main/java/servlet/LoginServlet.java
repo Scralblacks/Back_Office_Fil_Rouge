@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -75,7 +76,8 @@ public class LoginServlet extends HttpServlet {
                 && user.isPresent()
                 && (user.get().getRoleList().contains(admin) || user.get().getRoleList().contains(superAdmin))
         ){
-
+            user.get().setDateLastLogin(LocalDate.now());
+            usersDAO.update(user.get());
             HttpSession sessionStart = req.getSession();
             System.out.println(sessionStart);
             sessionStart.setAttribute("userId", user.get().getIdUser());
