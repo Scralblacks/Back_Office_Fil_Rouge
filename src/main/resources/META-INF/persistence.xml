@@ -3,7 +3,27 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="default">
+
+    <persistence-unit name="planning">
+
+        <properties>
+
+            <property name="jaka" value="true"/>
+            <!-- STRATEGIE POUR LE SCHEMA DE LA BASE DE DONNEES -->
+            <!-- validate : valide le schema de la BDD en correspondance avec les entités -->
+            <!-- update : met à jour le schéma en comparant les entités et le schéma actuel de la base de données -->
+            <!-- create : supprime le schéma de la base de données puis utilise les entités pour le recréer -->
+            <!-- create-drop : effectue l'option create à la fermeture de l'entityManagerFactory -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/planning_test_jpa"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value = "true" />
+
+        </properties>
 
     </persistence-unit>
+
 </persistence>

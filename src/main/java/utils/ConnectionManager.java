@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 public final class ConnectionManager {
     private static EntityManagerFactory CONNECTION_INSTANCE;
 
-    private final static String persistenceUnitName = "planning_pu";
+    private final static String persistenceUnitName = "planning";
 
     private ConnectionManager(){
 

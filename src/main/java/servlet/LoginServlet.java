@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         if(session != null && session.getAttribute("userId") != null){
-            resp.sendRedirect(UserListServlet.URL);
+//            resp.sendRedirect(UserListServlet.URL);
         } else {
             req.getRequestDispatcher("/WEB-INF/login_admin.jsp").forward(req, resp);
         }
@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
             sessionStart.setAttribute("userId", user.get().getIdUser());
             // Expiration of session after 30min
             sessionStart.setMaxInactiveInterval(30*60);
-            resp.sendRedirect(UserListServlet.URL);
+//            resp.sendRedirect(UserListServlet.URL);
 
         } else {
             req.setAttribute("loginFail", true);
