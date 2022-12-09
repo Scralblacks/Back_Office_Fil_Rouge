@@ -1,10 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 <head>
     <title>List of users</title>
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
 </head>
+
+<header>
+    <form method="post" action="${pageContext.request.contextPath}/logout">
+        <button type="submit">Log out</button>
+    </form>
+</header>
+
 <body>
 
 
@@ -32,7 +40,7 @@
         <tr>
             <form method="post" action="${pageContext.request.contextPath}/admin/update">
                 <td>
-                    <input type="text" name="idUser" value="${user.idUser}" readonly>
+                    <span>${user.idUser}</span>
                 </td>
                 <td>
                     <input type="text" name="pseudo" value="${user.pseudo}">
@@ -41,7 +49,7 @@
                     <input type="text" name="email" value="${user.email}">
                 </td>
                 <td>
-                    <input type="date" name="dateLastLogin" value="${user.dateLastLogin}" readonly>
+                    <span>${user.dateLastLogin}</span>
                 </td>
                 <td>
                         <span>
@@ -59,6 +67,16 @@
                     <c:forEach var="role" items="${user.roles}">
                         ${role.name}
                     </c:forEach>
+<%--                    <c:forEach var="role" items="${allRoles}">--%>
+<%--                        <c:set var="testString" value="${role.name}"/>--%>
+<%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
+<%--                        <label for="${role.name}"></label>--%>
+<%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
+<%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
+<%--                                checked--%>
+<%--                            </c:if>--%>
+<%--                        >--%>
+<%--                    </c:forEach>--%>
                 </td>
                 <td>
                     <button type="submit" class="btn btn-update">Update user</button>
