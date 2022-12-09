@@ -27,7 +27,7 @@
         <th>Role</th>
         <c:choose>
             <c:when test="${isSuperAdmin}">
-                <th colspan="4">Action</th>
+                <th colspan="5">Action</th>
             </c:when>
             <c:otherwise>
                 <th colspan="2">Action</th>
@@ -101,6 +101,12 @@
                     <form method="post" action="${pageContext.request.contextPath}/admin/upgrade">
                         <input type="hidden" value="${user.idUser}" name="idUser">
                         <button class="btn btn-upgrade">Upgrade to admin</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/admin/downgrade">
+                        <input type="hidden" value="${user.idUser}" name="idUser">
+                        <button class="btn btn-upgrade">Downgrade from admin</button>
                     </form>
                 </td>
             </c:if>

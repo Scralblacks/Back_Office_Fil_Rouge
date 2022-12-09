@@ -26,7 +26,7 @@ public class UserListServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
 
-        Role superAdmin = roleDAO.findById(2L).get();
+        Role superAdmin = roleDAO.findById(3L).get();
         Users user = usersDAO.findById((Long) session.getAttribute("userId")).get();
 
         boolean isSuperAdmin = user.getRoles().contains(superAdmin);
