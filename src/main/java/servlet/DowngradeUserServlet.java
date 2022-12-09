@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/admin/upgrade")
-public class UpgradeUserServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/admin/downgrade")
+public class DowngradeUserServlet extends HttpServlet {
 
     UsersDAO usersDAO = new UsersDAO();
     RoleDAO roleDAO = new RoleDAO();
@@ -21,15 +21,18 @@ public class UpgradeUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Users upgradedUser = usersDAO.findById(Long.parseLong(req.getParameter("idUser"))).get();
+        Users downgradedUser = usersDAO.findById(Long.parseLong(req.getParameter("idUser"))).get();
 
         System.out.println(Long.parseLong(req.getParameter("idUser")));
 
         Role admin = roleDAO.findById(2L).get();
 
-        if (!upgradedUser.getRoles().contains(admin)){
-            upgradedUser.addRole(admin);
-            usersDAO.update(upgradedUser);
+        if (downgradedUser.getRoles().contains(admin)){
+            downgradedUser.deleteRole(admin);
+            usersDAO.update(downgradedUser);
+            if (downgradedUser.getRoles().size() == 0){
+                usersDAO.delete(downgradedUser.getIdUser());
+            }
         }
 
         resp.sendRedirect(UserListServlet.URL);
