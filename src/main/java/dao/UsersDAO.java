@@ -83,17 +83,9 @@ public class UsersDAO implements CrudDAO<Users> {
         EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        Users userToUpdate = null;
         try {
             et.begin();
-            userToUpdate = Optional.of(em.find(Users.class, element.getIdUser())).get();
-            userToUpdate.setPhoto(element.getPhoto());
-            userToUpdate.setPassword(element.getPassword());
-            userToUpdate.setEmail(element.getEmail());
-            userToUpdate.setActivated(element.isActivated());
-            userToUpdate.setRoles(element.getRoles());
-            userToUpdate.setDateLastLogin(element.getDateLastLogin());
-            em.merge(userToUpdate);
+            em.merge(element);
             et.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +95,7 @@ public class UsersDAO implements CrudDAO<Users> {
         } finally {
             em.close();
         }
-        return userToUpdate;
+        return element;
     }
 
     @Override

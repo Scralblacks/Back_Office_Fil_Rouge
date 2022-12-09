@@ -40,11 +40,14 @@ public class Main {
 
         // Creating an instance of the Address entity
         Address userAddress = new Address("Paris","75000");
+        Address user1Address = new Address("Tavaux","39500");
 
         // Creating an instance of the User entity.
         // Then we verify if user already exists based on his email
         Users user = new Users("fabrice@fabrice.fr");
         Optional<Users> verifyUser = userDao.checkIfExists(user);
+        Users user1 = new Users("victor@victor.fr");
+        Optional<Users> verifyUser1 = userDao.checkIfExists(user);
 
         // If he doesn't
         if(!verifyUser.isPresent()) {
@@ -94,6 +97,57 @@ public class Main {
             // Verifying if user has been correctly added
             System.out.println("GETTING THE USER : ");
             Optional<Users> gettingThisOne = userDao.findById(newUser.getIdUser());
+            System.out.println(gettingThisOne);
+
+        } else {
+            System.out.println("User already exists !");
+        }
+
+        if(!verifyUser1.isPresent()) {
+
+            // Creating him a planning with default name
+            Planning planning1 = planningDao.create(new Planning("Victor's planning", LocalDate.now()));
+
+            // Getting the basic role (Optional here because we've instanced it above
+            Role role = roleDao.findById(1L).get();
+
+            // Checking if user address is already registered
+            Optional<Address> address1 = addressDao.checkIfExists(user1Address);
+
+            // If it doesn't exist, creates it
+            if (!address1.isPresent()) {
+                user1Address = addressDao.create(user1Address);
+            } else {
+                user1Address = address1.get();
+            }
+
+            // For security purpose, we use a java security lib to hash the user password
+            byte[] hash = new byte[16];
+            try {
+                hash = new Password_Hasher().h_password("azerty");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (InvalidKeySpecException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Completing the user entity
+            user1.setPseudo("Victor");
+            user1.setPassword(hash);
+            user1.setAddress(user1Address);
+            user1.setPlanning(planning1);
+            user1.setPhoto(null);
+            user1.addRole(basicRole);
+            user1.setActivated(true);
+
+            // Adding user to the database
+            Users newUser1 = userDao.create(user1);
+
+            System.out.println("User created successfully !");
+
+            // Verifying if user has been correctly added
+            System.out.println("GETTING THE USER : ");
+            Optional<Users> gettingThisOne = userDao.findById(newUser1.getIdUser());
             System.out.println(gettingThisOne);
 
         } else {

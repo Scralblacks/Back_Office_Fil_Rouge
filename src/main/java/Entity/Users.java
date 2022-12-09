@@ -96,6 +96,13 @@ public class Users {
         this.planning = planning;
     }
 
+    public Users(Long idUser, String pseudo, String email, LocalDate dateLastLogin){
+        this.idUser = idUser;
+        this.pseudo = pseudo;
+        this.email = email;
+        this.dateLastLogin = dateLastLogin;
+    }
+
     public Users(String pseudo, String email, byte[] password) {
         this.pseudo = pseudo;
         this.email = email;
