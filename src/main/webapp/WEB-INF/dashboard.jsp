@@ -28,19 +28,19 @@
         </thead>
         <tbody>
             <c:forEach var="user" items="${users}">
-                <form>
+                <form method="post" action="${pageContext.request.contextPath}/admin/update">
                 <tr>
                 <td>
-                    <input type="text" value="${user.idUser}" readonly>
+                    <input type="text" name="idUser" value="${user.idUser}" readonly>
                 </td>
                 <td>
-                    <input type="text" value="${user.pseudo}">
+                    <input type="text" name="pseudo" value="${user.pseudo}">
                 </td>
                 <td>
-                    <input type="text" value="${user.email}">
+                    <input type="text" name="email" value="${user.email}">
                 </td>
                 <td>
-                    <input type="date" value="${user.dateLastLogin}" readonly>
+                    <input type="date" name="dateLastLogin" value="${user.dateLastLogin}" readonly>
                 </td>
                 <td>
                     <c:forEach var="role" items="${user.roles}" >
@@ -48,14 +48,11 @@
                     </c:forEach>
                 </td>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/admin/update">
-                        <input type="hidden" value="${item.idUser}" name="idUser">
-                        <button class="btn btn-update">Update user</button>
-                    </form>
+                    <button type="submit" class="btn btn-update">Update user</button>
                 </td>
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/admin/delete">
-                        <input type="hidden" value="${item.idUser}" name="idUser">
+                        <input type="hidden" value="${user.idUser}" name="idUser">
                         <button class="btn btn-delete">Delete user</button>
                     </form>
                 </td>
@@ -74,7 +71,6 @@
                     </td>
                 </c:if>
                 </tr>
-                </form>
             </c:forEach>
         </tbody>
     </table>
