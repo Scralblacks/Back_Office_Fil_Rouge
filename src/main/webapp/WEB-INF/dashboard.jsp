@@ -15,6 +15,7 @@
                 <th>Pseudo</th>
                 <th>Email</th>
                 <th>Date of last Login</th>
+                <th>Activated</th>
                 <th>Role</th>
                 <c:choose>
                     <c:when test="${isSuperAdmin}">
@@ -42,6 +43,18 @@
                 <td>
                     <input type="date" name="dateLastLogin" value="${user.dateLastLogin}" readonly>
                 </td>
+                    <td>
+                        <span>
+                            <c:choose>
+                                <c:when test="${user.activated}">
+                                    Activated
+                                </c:when>
+                                <c:otherwise>
+                                    Deactivated
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+                    </td>
                 <td>
                     <c:forEach var="role" items="${user.roles}" >
                         ${role.name}
@@ -58,8 +71,8 @@
                 </td>
                  <td>
                     <form method="post" action="${pageContext.request.contextPath}/admin/deactivate">
-                        <input type="hidden" value="${item.idUser}" name="idUser">
-                        <button class="btn btn-delete">Deactivate user</button>
+                        <input type="hidden" value="${user.idUser}" name="idUser">
+                        <button class="btn btn-deactive">Deactivate user</button>
                     </form>
                 </td>
                 <c:if test="${isSuperAdmin}">
