@@ -2,13 +2,14 @@
 
 <html>
 <head>
-    <title>List od users</title>
+    <title>List of users</title>
+    <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<form>
-    <table>
-        <thread>
+
+    <table class="styled-table">
+        <thead>
             <tr>
                 <th>Id</th>
                 <th>Pseudo</th>
@@ -24,53 +25,54 @@
                     </c:otherwise>
                 </c:choose>
             </tr>
-        </thread>
+        </thead>
         <tbody>
             <c:forEach var="user" items="${users}">
+                <form>
                 <tr>
-                    <input type="text" value="${user.idUser}">
-                </tr>
-                <tr>
+                <td>
+                    <input type="text" value="${user.idUser}" readonly>
+                </td>
+                <td>
                     <input type="text" value="${user.pseudo}">
-                </tr>
-                <tr>
+                </td>
+                <td>
                     <input type="text" value="${user.email}">
-                </tr>
-                <tr>
-                    <input type="date" value="${user.dateLastLogin}">
-                </tr>
-                <tr>
+                </td>
+                <td>
+                    <input type="date" value="${user.dateLastLogin}" readonly>
+                </td>
+                <td>
                     <c:forEach var="role" items="${user.roles}" >
                         ${role.name}
                     </c:forEach>
-                </tr>
-                <tr>
-                    <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
+                </td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/admin/update">
                         <input type="hidden" value="${item.idUser}" name="idUser">
                         <button class="btn btn-update">Update user</button>
                     </form>
-                </tr>
-                <tr>
-                    <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
+                </td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/admin/delete">
                         <input type="hidden" value="${item.idUser}" name="idUser">
                         <button class="btn btn-delete">Delete user</button>
                     </form>
-                </tr>
+                </td>
                 <c:if test="${isSuperAdmin}">
-                    <tr>
-                        <form method="post" action="${pageContext.request.contextPath}/admin/dashbord">
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/admin/upgrade">
                             <input type="hidden" value="${user.idUser}" name="idUser">
-                            <button class="btn btn-delete">Upgrade to admin</button>
+                            <button class="btn btn-upgrade">Upgrade to admin</button>
                         </form>
-                    </tr>
+                    </td>
                 </c:if>
+                </tr>
+                </form>
             </c:forEach>
         </tbody>
     </table>
 
-    <button>Update all</button>
-
-</form>
 
 </body>
 </html>

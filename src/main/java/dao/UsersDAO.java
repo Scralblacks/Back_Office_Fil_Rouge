@@ -92,6 +92,7 @@ public class UsersDAO implements CrudDAO<Users> {
             userToUpdate.setEmail(element.getEmail());
             userToUpdate.setActivated(element.isActivated());
             userToUpdate.setRoles(element.getRoles());
+            userToUpdate.setDateLastLogin(element.getDateLastLogin());
             em.merge(userToUpdate);
             et.commit();
         } catch (Exception e) {
