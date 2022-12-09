@@ -18,10 +18,10 @@
                 <th>Role</th>
                 <c:choose>
                     <c:when test="${isSuperAdmin}">
-                        <th colspan="3">Action</th>
+                        <th colspan="4">Action</th>
                     </c:when>
                     <c:otherwise>
-                        <th colspan="2">Action</th>
+                        <th colspan="3">Action</th>
                     </c:otherwise>
                 </c:choose>
             </tr>
@@ -57,6 +57,12 @@
                     <form method="post" action="${pageContext.request.contextPath}/admin/delete">
                         <input type="hidden" value="${item.idUser}" name="idUser">
                         <button class="btn btn-delete">Delete user</button>
+                    </form>
+                </td>
+                 <td>
+                    <form method="post" action="${pageContext.request.contextPath}/admin/deactivate">
+                        <input type="hidden" value="${item.idUser}" name="idUser">
+                        <button class="btn btn-delete">Deactivate user</button>
                     </form>
                 </td>
                 <c:if test="${isSuperAdmin}">
