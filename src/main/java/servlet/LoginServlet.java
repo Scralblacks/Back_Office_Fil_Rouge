@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
             sessionStart.setAttribute("userId", user.get().getIdUser());
             // Expiration of session after 30min
             sessionStart.setMaxInactiveInterval(30*60);
-            resp.sendRedirect(UserListServlet.URL);
+            resp.sendRedirect(UserListServlet.URL + "?page=1");
 
         } else {
             req.setAttribute("loginFail", true);

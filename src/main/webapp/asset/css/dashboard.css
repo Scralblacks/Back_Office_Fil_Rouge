@@ -1,0 +1,270 @@
+header {
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 var(--md-radius) var(--md-radius);
+    background-color: var(--secondary-bg-color);
+    z-index: 1;
+}
+
+header .container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .container button {
+    height: 50px;
+    width: 50px;
+    border-radius: var(--rounded-radius);
+    background-color: var(--fourth-bg-color);
+    border: none;
+}
+
+@media (min-width: 700px) {
+    header .container .logout__form button img::after {
+        content: 'Log out'
+    }
+}
+
+main {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .container {
+    height: 100%;
+    padding-top: 125px;
+    z-index: -1;
+    background-color: var(--main-bg-color);
+}
+
+main .container .dashboard_introduction {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 30px 10px;
+}
+
+main .container .dashboard_introduction h2 {
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+main .container .dashboard_introduction .dash {
+    height:10px;
+    width: 50px;
+    background-color: white;
+    border-radius: var(--md-radius);
+}
+
+main .container .action_forms {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin:20px
+}
+
+main .container table tbody tr .form__field {
+    font-family: inherit;
+   /* width: 100%;*/
+    border: 0;
+    border-bottom: 2px solid var(--secondary-bg-color);
+    outline: 0;
+    font-size: 1rem;
+    color: var(--secondary-bg-color);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+main .container table tbody tr form button {
+    position: relative;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: var(--lg-radius);
+    box-shadow: 0 0 12px 0 #0000001A;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+}
+
+main .container table tbody td form button.delete {
+    background-color: var(--btn-delete-color);
+
+}
+
+main .container table tbody td form button.deactivate {
+    background-color: var(--third-bg-color);
+}
+main .container table tbody  td form button.update {
+    background-color: lightgreen;
+}
+
+main .container table tbody td form button.upgrade {
+    background-color: dodgerblue;
+}
+
+main .container table tbody td form button.downgrade {
+    background-color: orange;
+}
+
+
+
+
+
+/* TABLE SMALL DEVICE */
+@media (max-width: 1099px) {
+    /* Dashboard */
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px auto;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        border-radius: var(--sm-radius);
+        margin:15px;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        margin:10px;
+    }
+
+    td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        color: var(--secondary-bg-color);
+    }
+
+    td:nth-of-type(1):before {
+        content: "ID";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Pseudo";
+    }
+
+    td:nth-of-type(3):before {
+        content: "Email";
+    }
+
+    td:nth-of-type(4):before {
+        content: "Last Date Connected";
+    }
+
+    td:nth-of-type(5):before {
+        content: "Status";
+    }
+
+    td:nth-of-type(6):before {
+        content: "Roles";
+    }
+
+    td:nth-of-type(7):before {
+        content: "Action";
+    }
+
+    table tbody td span {
+        color: var(--secondary-bg-color);
+    }
+
+}
+
+@media (min-width: 1100px) {
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px auto;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead tr {
+        background-color: #2A303D;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+        color: var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) .form__field {
+        color:var(--main-bg-color);
+        border-bottom: 2px solid var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) .form__field::placeholder {
+        color:var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(odd) {
+        color:white;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left:50%;
+    transform: translateX(-50%);
+    color: white;
+    margin: 40px;
+    width: 100%;
+    text-align: center;
+}

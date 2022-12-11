@@ -20,7 +20,7 @@ public class DeactivateUserServlet extends HttpServlet {
 
         Users deactivitedUser = usersDAO.findById(Long.parseLong(req.getParameter("idUser"))).get();
 
-        deactivitedUser.setActivated(false);
+        deactivitedUser.setActivated(!deactivitedUser.isActivated());
 
         usersDAO.update(deactivitedUser);
 

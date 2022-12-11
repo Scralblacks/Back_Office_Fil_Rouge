@@ -32,6 +32,38 @@ public class UsersDAO implements CrudDAO<Users> {
         return users;
     }
 
+    public List<Users> getChunk(int start, int total) {
+        EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        List<Users> users = null;
+        try {
+            TypedQuery<Users> query = em.createQuery("select u from Users u " +
+                    "left join fetch u.roles " +
+                    "left join fetch u.share", Users.class).setFirstResult((start -1) * total).setMaxResults(total);
+            users = query.getResultList();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            em.close();
+        }
+        return users;
+    }
+
+    public Long count() {
+        EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        Long size = 0L;
+        try {
+            Query query = em.createQuery("select COUNT(u.idUser) from Users u ");
+            size = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            em.close();
+        }
+        return size;
+    }
+
     @Override
     public Optional<Users> findById(Long id) {
         EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();

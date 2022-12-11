@@ -26,16 +26,32 @@ public class UserListServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
 
+        String spageid=req.getParameter("page");
+        int pageid=Integer.parseInt(spageid);
+        int total = 5;
+        if(pageid==1){}
+        else{
+            pageid=pageid-1;
+            pageid=pageid*total+1;
+        }
+
+        Long countUsers = usersDAO.count();
+        int numberPages = (int) Math.ceil((double)countUsers / total);
+
         Role superAdmin = roleDAO.findById(3L).get();
         Users user = usersDAO.findById((Long) session.getAttribute("userId")).get();
 
         boolean isSuperAdmin = user.getRoles().contains(superAdmin);
 
-        List<Users> users = usersDAO.findAll();
+        // List<Users> users = usersDAO.findAll();
+        List<Users> users = usersDAO.getChunk(pageid,total);
 
         req.setAttribute("users", users);
         req.setAttribute("allRoles", roleDAO.findAll());
         req.setAttribute("isSuperAdmin", isSuperAdmin);
+        req.setAttribute("username", user.getPseudo());
+        req.setAttribute("numberPage", numberPages);
+        req.setAttribute("currentPage", pageid);
 
         req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/dashboard.jsp").forward(req, resp);
 
