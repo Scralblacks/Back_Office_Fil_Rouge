@@ -9,7 +9,7 @@
 <c:if test="${loginFail}">
     <h1>Log in failed</h1>
 </c:if>
-<form method="post" action="${pageContext.request.contextPath}/admin/login">
+<form method="post" action="${pageContext.request.contextPath}/admin_login">
     <label for="email">Email : </label>
     <input id="email" name="email" type="text" placeholder="email@email.com" value="fabrice@fabrice.fr">
 

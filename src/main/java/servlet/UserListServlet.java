@@ -34,7 +34,7 @@ public class UserListServlet extends HttpServlet {
         List<Users> users = usersDAO.findAll();
 
         req.setAttribute("users", users);
-        req.setAttribute("allRoles", roleDAO.findAll());
+        req.setAttribute("admin", user);
         req.setAttribute("isSuperAdmin", isSuperAdmin);
 
         req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/dashboard.jsp").forward(req, resp);

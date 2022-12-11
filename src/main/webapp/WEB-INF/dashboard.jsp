@@ -8,6 +8,7 @@
 </head>
 
 <header>
+    <h1>Hello ${admin.pseudo}</h1>
     <form method="post" action="${pageContext.request.contextPath}/logout">
         <button type="submit">Log out</button>
     </form>
