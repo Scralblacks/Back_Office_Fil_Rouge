@@ -19,10 +19,10 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
-@WebServlet(urlPatterns = "/admin/login")
+@WebServlet(urlPatterns = "/admin_login")
 public class LoginServlet extends HttpServlet {
 
-    public static final String URL = "/admin/login";
+    public static final String URL = "/admin_login";
     UsersDAO usersDAO = new UsersDAO();
     RoleDAO roleDAO = new RoleDAO();
 

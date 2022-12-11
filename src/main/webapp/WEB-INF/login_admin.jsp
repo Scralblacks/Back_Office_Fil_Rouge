@@ -33,11 +33,8 @@
                         <label class="form__label" for="password">Password</label>
                     </div>
 
-                    <button>Log in</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</main>
+    <button>Log in</button>
+</form>
+
 </body>
 </html>

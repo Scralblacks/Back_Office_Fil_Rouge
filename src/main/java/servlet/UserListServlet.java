@@ -47,7 +47,7 @@ public class UserListServlet extends HttpServlet {
         List<Users> users = usersDAO.getChunk(pageid,total);
 
         req.setAttribute("users", users);
-        req.setAttribute("allRoles", roleDAO.findAll());
+        req.setAttribute("admin", user);
         req.setAttribute("isSuperAdmin", isSuperAdmin);
         req.setAttribute("username", user.getPseudo());
         req.setAttribute("numberPage", numberPages);
