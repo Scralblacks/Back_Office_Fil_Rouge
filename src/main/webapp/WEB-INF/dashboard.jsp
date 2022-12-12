@@ -1,12 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>List of users</title>
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/dashboard.css" />" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<c:url value="/asset/js/main.js" />"></script>
+
 </head>
 
 <body>
@@ -14,7 +17,7 @@
     <div class="container">
         <span>Bienvenue <c:out value="${username}"/></span>
         <form class="logout__form" method="post" action="${pageContext.request.contextPath}/logout">
-            <button type="submit"><img src="/asset/img/logout.png"></button>
+            <button type="submit"><img src="/asset/img/logout.png" alt=""></button>
         </form>
     </div>
 </header>
@@ -70,17 +73,23 @@
 
                         </td>
                         <td class="priority-1">
-<%--                            <input type="checkbox" checked="${!user.activated ? true : false}" />--%>
-                        <span>
-                            <c:choose>
-                                <c:when test="${user.activated}">
-                                    Activated
-                                </c:when>
-                                <c:otherwise>
-                                    Deactivated
-                                </c:otherwise>
-                            </c:choose>
-                        </span>
+                            <label class="toggler-wrapper style-1">
+                                <input type="checkbox" onclick='triggerActivateUser(${user.idUser})' <c:if test="${user.activated}">checked</c:if>   >
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+
+<%--                        <span>--%>
+<%--                            <c:choose>--%>
+<%--                                <c:when test="${user.activated}">--%>
+<%--                                    Activated--%>
+<%--                                </c:when>--%>
+<%--                                <c:otherwise>--%>
+<%--                                    Deactivated--%>
+<%--                                </c:otherwise>--%>
+<%--                            </c:choose>--%>
+<%--                        </span>--%>
                         </td>
                         <td class="priority-1">
                             <span><c:forEach var="role" items="${user.roles}">
@@ -102,10 +111,10 @@
                         </td>
                     </form>
                     <td class="action_forms">
-                            <form method="post" action="${pageContext.request.contextPath}/admin/deactivate">
-                                <input type="hidden" value="${user.idUser}" name="idUser">
-                                <button class="deactivate">Deactivate user</button>
-                            </form>
+<%--                            <form method="post" action="${pageContext.request.contextPath}/admin/deactivate">--%>
+<%--                                <input type="hidden" value="${user.idUser}" name="idUser">--%>
+<%--                                <button class="deactivate">Deactivate user</button>--%>
+<%--                            </form>--%>
                             <c:if test="${isSuperAdmin}">
                                 <form method="post" action="${pageContext.request.contextPath}/admin/delete">
                                     <input type="hidden" value="${user.idUser}" name="idUser">
