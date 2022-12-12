@@ -21,7 +21,7 @@
 
 
             <div class="container_form">
-                <form method="post" action="${pageContext.request.contextPath}/admin/login">
+                <form method="post" action="${pageContext.request.contextPath}/admin_login">
                     <div class="form__group">
                         <input class="form__field" id="email" name="email" type="input" placeholder="Email"
                                value="fabrice@fabrice.fr" required>
@@ -34,7 +34,11 @@
                     </div>
 
     <button>Log in</button>
-</form>
 
+</form>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
