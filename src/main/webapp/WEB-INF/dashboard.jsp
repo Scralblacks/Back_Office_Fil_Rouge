@@ -5,10 +5,12 @@
 <html>
 <head>
     <title>List of users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/dashboard.css" />" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<c:url value="/asset/js/main.js" />"></script>
+    <script src="https://kit.fontawesome.com/21e53ce249.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -50,100 +52,102 @@
             </thead>
             <tbody>
             <c:forEach var="user" items="${users}">
-                <tr>
-                    <form method="post" action="${pageContext.request.contextPath}/admin/update">
-                        <td class="priority-2">
-                            <span>${user.idUser}</span>
-                        </td>
-                        <td class="priority-1">
-                            <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
-                        </td>
-                        <td class="priority-1">
-                            <input class="form__field" type="text" name="email" value="${user.email}">
-                        </td>
-                        <td class="priority-1">
-                            <c:choose>
-                                <c:when test="${empty user.dateLastLogin}">
-                                    <span>Never</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <span>${user.dateLastLogin}</span>
-                                </c:otherwise>
-                            </c:choose>
+            <tr>
+                <form method="post" action="${pageContext.request.contextPath}/admin/update">
+                    <td class="priority-2">
+                        <span>${user.idUser}</span>
+                    </td>
+                    <td class="priority-1">
+                        <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
+                    </td>
+                    <td class="priority-1">
+                        <input class="form__field" type="text" name="email" value="${user.email}">
+                    </td>
+                    <td class="priority-1">
+                        <c:choose>
+                            <c:when test="${empty user.dateLastLogin}">
+                                <span>Never</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span>${user.dateLastLogin}</span>
+                            </c:otherwise>
+                        </c:choose>
 
-                        </td>
-                        <td class="priority-1">
-                            <label class="toggler-wrapper style-1">
-                                <input type="checkbox" onclick='triggerActivateUser(${user.idUser})' <c:if test="${user.activated}">checked</c:if>   >
-                                <div class="toggler-slider">
-                                    <div class="toggler-knob"></div>
-                                </div>
-                            </label>
+                    </td>
+                    <td class="priority-1">
+                        <label class="toggler-wrapper style-1">
+                            <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
+                                   <c:if test="${user.activated}">checked</c:if>   >
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
 
-<%--                        <span>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${user.activated}">--%>
-<%--                                    Activated--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    Deactivated--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-<%--                        </span>--%>
-                        </td>
-                        <td class="priority-1">
+                            <%--                        <span>--%>
+                            <%--                            <c:choose>--%>
+                            <%--                                <c:when test="${user.activated}">--%>
+                            <%--                                    Activated--%>
+                            <%--                                </c:when>--%>
+                            <%--                                <c:otherwise>--%>
+                            <%--                                    Deactivated--%>
+                            <%--                                </c:otherwise>--%>
+                            <%--                            </c:choose>--%>
+                            <%--                        </span>--%>
+                    </td>
+                    <td class="priority-1">
                             <span><c:forEach var="role" items="${user.roles}">
                                 ${role.name}
                             </c:forEach></span>
-                                <%--                    <c:forEach var="role" items="${allRoles}">--%>
-                                <%--                        <c:set var="testString" value="${role.name}"/>--%>
-                                <%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
-                                <%--                        <label for="${role.name}"></label>--%>
-                                <%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
-                                <%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
-                                <%--                                checked--%>
-                                <%--                            </c:if>--%>
-                                <%--                        >--%>
-                                <%--                    </c:forEach>--%>
-                        </td>
-                        <td class="priority-1">
-                            <button type="submit" class="update">Update user</button>
-                        </td>
-                    </form>
-                    <td class="action_forms">
-<%--                            <form method="post" action="${pageContext.request.contextPath}/admin/deactivate">--%>
-<%--                                <input type="hidden" value="${user.idUser}" name="idUser">--%>
-<%--                                <button class="deactivate">Deactivate user</button>--%>
-<%--                            </form>--%>
-                            <c:if test="${isSuperAdmin}">
-                                <form method="post" action="${pageContext.request.contextPath}/admin/delete">
-                                    <input type="hidden" value="${user.idUser}" name="idUser">
-                                    <button class="delete">Delete user</button>
-                                </form>
-                                <form method="post" action="${pageContext.request.contextPath}/admin/upgrade">
-                                    <input type="hidden" value="${user.idUser}" name="idUser">
-                                    <button class="upgrade">Upgrade to admin</button>
-                                </form>
-
-                                <form method="post" action="${pageContext.request.contextPath}/admin/downgrade">
-                                    <input type="hidden" value="${user.idUser}" name="idUser">
-                                    <button class="downgrade">Downgrade from admin</button>
-                                </form>
-                            </c:if>
-                        </div>
+                            <%--                    <c:forEach var="role" items="${allRoles}">--%>
+                            <%--                        <c:set var="testString" value="${role.name}"/>--%>
+                            <%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
+                            <%--                        <label for="${role.name}"></label>--%>
+                            <%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
+                            <%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
+                            <%--                                checked--%>
+                            <%--                            </c:if>--%>
+                            <%--                        >--%>
+                            <%--                    </c:forEach>--%>
                     </td>
-                </tr>
+                    <td class="priority-1">
+                        <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
+                    </td>
+                </form>
+                <td class="action_forms">
+                    <c:if test="${isSuperAdmin}">
+                    <div>
+                        <form method="post" action="${pageContext.request.contextPath}/admin/delete">
+                            <input type="hidden" value="${user.idUser}" name="idUser">
+                            <button class="delete"><i class="fa-solid fa-user-minus"></i></button>
+                        </form>
+                    </div>
+                    <div>
+                        <form method="post" action="${pageContext.request.contextPath}/admin/upgrade">
+                            <input type="hidden" value="${user.idUser}" name="idUser">
+                            <button class="upgrade"><i class="fa-solid fa-angles-up"></i></button>
+                        </form>
+                    </div>
+                    <div>
+                        <form method="post" action="${pageContext.request.contextPath}/admin/downgrade">
+                            <input type="hidden" value="${user.idUser}" name="idUser">
+                            <button class="downgrade"><i class="fa-solid fa-angles-down"></i></button>
+                        </form>
+                    </div>
+                    </c:if>
+    </div>
+    </td>
+    </tr>
 
-            </c:forEach>
-            </tbody>
-        </table>
+    </c:forEach>
+    </tbody>
+    </table>
     </div>
 </main>
 <footer>
     <c:forEach begin="1" end="${numberPage}" var="page">
         <c:choose>
             <c:when test="${page eq currentPage}">
-                <span>${page}</span
+                <span class="active_pagination_number">${page}</span>
             </c:when>
             <c:otherwise>
                 <a href="${pageContext.request.contextPath}/admin/dashbord?page=${page}">${page}</a>

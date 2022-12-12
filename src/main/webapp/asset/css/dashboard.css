@@ -1,9 +1,18 @@
+body {
+    overflow-x: hidden;
+    max-width: 1920px;
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 header {
     width: 100%;
     height: 120px;
-    position: absolute;
+   /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0;*/
     border-radius: 0 0 var(--md-radius) var(--md-radius);
     background-color: var(--secondary-bg-color);
     z-index: 1;
@@ -34,18 +43,17 @@ header .container button {
 }
 
 main {
-    height: 100%;
+    /*height: 100%;*/
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 main .container {
-    height: 100%;
-    padding-top: 125px;
     z-index: 0;
-    background-color: var(--main-bg-color);
+    margin: 0 auto;
 }
 
 main .container .dashboard_introduction {
@@ -70,7 +78,7 @@ main .container .dashboard_introduction .dash {
 
 main .container .action_forms {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     padding: 0;
     margin:20px
@@ -89,7 +97,7 @@ main .container table tbody tr .form__field {
     transition: border-color 0.2s;
 }
 
-main .container table tbody tr form button {
+main .container table tbody tr button {
     position: relative;
     padding: 20px;
     cursor: pointer;
@@ -108,7 +116,7 @@ main .container table tbody td form button.delete {
 main .container table tbody td form button.deactivate {
     background-color: var(--third-bg-color);
 }
-main .container table tbody  td form button.update {
+main .container table tbody tr button.update {
     background-color: lightgreen;
 }
 
@@ -128,6 +136,8 @@ main .container table tbody td form button.downgrade {
 @media (max-width: 1099px) {
     /* Dashboard */
     .styled-table {
+        max-height: 60vh;
+        overflow-y: auto;
         border-collapse: collapse;
         margin: 25px auto;
         font-size: 0.9em;
@@ -291,6 +301,8 @@ main .container table tbody td form button.downgrade {
 @media (min-width: 1100px) {
 
     .styled-table {
+        max-height: 80vh;
+        overflow-y: auto;
         border-collapse: collapse;
         margin: 25px auto;
         font-size: 0.9em;
@@ -314,21 +326,21 @@ main .container table tbody td form button.downgrade {
         border-bottom: 1px solid #dddddd;
     }
 
-    .styled-table tbody tr:nth-of-type(even) {
+    .styled-table tbody tr:nth-of-type(odd) {
         background-color: #f3f3f3;
         color: var(--main-bg-color);
     }
 
-    .styled-table tbody tr:nth-of-type(even) .form__field {
+    .styled-table tbody tr:nth-of-type(odd) .form__field {
         color:var(--main-bg-color);
         border-bottom: 2px solid var(--main-bg-color);
     }
 
-    .styled-table tbody tr:nth-of-type(even) .form__field::placeholder {
+    .styled-table tbody tr:nth-of-type(odd) .form__field::placeholder {
         color:var(--main-bg-color);
     }
 
-    .styled-table tbody tr:nth-of-type(odd) {
+    .styled-table tbody tr:nth-of-type(even) {
         color:white;
     }
 
@@ -348,7 +360,20 @@ footer {
     left:50%;
     transform: translateX(-50%);
     color: white;
-    margin: 40px;
+    margin: 30px;
     width: 100%;
     text-align: center;
+}
+
+footer .active_pagination_number {
+    padding:5px;
+    background-color: var(--secondary-bg-color);
+    color: var(--main-bg-color);
+    border-radius: var(--lg-radius);
+    margin: 0 0.75em;
+
+}
+
+footer a {
+    margin: 0 0.5em;
 }

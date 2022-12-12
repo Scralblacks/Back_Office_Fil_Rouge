@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/login.css" />" rel="stylesheet" type="text/css">
