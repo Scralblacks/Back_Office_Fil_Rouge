@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 <html>
 <head>
@@ -52,95 +54,111 @@
             </thead>
             <tbody>
             <c:forEach var="user" items="${users}">
-            <tr>
-                <form method="post" action="${pageContext.request.contextPath}/admin/update">
-                    <td class="priority-2">
-                        <span>${user.idUser}</span>
-                    </td>
-                    <td class="priority-1">
-                        <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
-                    </td>
-                    <td class="priority-1">
-                        <input class="form__field" type="text" name="email" value="${user.email}">
-                    </td>
-                    <td class="priority-1">
-                        <c:choose>
-                            <c:when test="${empty user.dateLastLogin}">
-                                <span>Never</span>
-                            </c:when>
-                            <c:otherwise>
-                                <span>${user.dateLastLogin}</span>
-                            </c:otherwise>
-                        </c:choose>
+                <tr>
+                    <form method="post" action="${pageContext.request.contextPath}/admin/update">
+                        <td class="priority-2">
+                            <span>${user.idUser}</span>
+                        </td>
+                        <td class="priority-1">
+                            <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
+                        </td>
+                        <td class="priority-1">
+                            <input class="form__field" type="text" name="email" value="${user.email}">
+                        </td>
+                        <td class="priority-1">
+                            <c:choose>
+                                <c:when test="${empty user.dateLastLogin}">
+                                    <span>Never</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="date" value="${user.dateLastLogin.toString()}" />
+                                    <fmt:parseDate value="${date}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
+                                    <span><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy" /></span>
+                                </c:otherwise>
+                            </c:choose>
 
-                    </td>
-                    <td class="priority-1">
-                        <label class="toggler-wrapper style-1">
-                            <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
-                                   <c:if test="${user.activated}">checked</c:if>   >
-                            <div class="toggler-slider">
-                                <div class="toggler-knob"></div>
+                        </td>
+                        <td class="priority-1">
+                            <label class="toggler-wrapper style-1">
+                                <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
+                                       <c:if test="${user.activated}">checked</c:if>   >
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </td>
+                        <td class="flexable_td">
+                            <c:forEach items="${user.roles}" var="currentRole" varStatus="stat">
+                                <c:set var="sRoles" value="${stat.first ? '' : sRoles} ${currentRole.name}"/>
+                            </c:forEach>
+                            <div class="activation__group">
+                                <div class="activation__field">
+                                    <label class="toggler-wrapper style-1">
+                                        <input type="checkbox" onclick='triggerActivateRole(${user.idUser},1)'
+                                               <c:if test="${fn:contains(sRoles, 'BASIC')}">checked</c:if>   >
+                                        <div class="toggler-slider">
+                                            <div class="toggler-knob"></div>
+                                        </div>
+                                    </label>
+                                    <span>BASIC</span>
+                                </div>
+                                <div class="activation__field">
+                                    <label class="toggler-wrapper style-1">
+                                        <input type="checkbox" onclick='triggerActivateRole(${user.idUser},2)'
+                                               <c:if test="${fn:contains(sRoles, 'ADMIN')}">checked</c:if>   >
+                                        <div class="toggler-slider">
+                                            <div class="toggler-knob"></div>
+                                        </div>
+                                    </label>
+                                    <span>ADMIN</span>
+                                </div>
                             </div>
-                        </label>
+                            <c:if test="${fn:contains(sRoles,'SUPERADMIN')}">
+                                <div class="superadmin__icon">
+                                    <i class="fa-solid fa-medal fa-lg"></i>
+                                </div>
+                            </c:if>
 
-                            <%--                        <span>--%>
-                            <%--                            <c:choose>--%>
-                            <%--                                <c:when test="${user.activated}">--%>
-                            <%--                                    Activated--%>
-                            <%--                                </c:when>--%>
-                            <%--                                <c:otherwise>--%>
-                            <%--                                    Deactivated--%>
-                            <%--                                </c:otherwise>--%>
-                            <%--                            </c:choose>--%>
-                            <%--                        </span>--%>
-                    </td>
-                    <td class="priority-1">
-                            <span><c:forEach var="role" items="${user.roles}">
-                                ${role.name}
-                            </c:forEach></span>
-                            <%--                    <c:forEach var="role" items="${allRoles}">--%>
-                            <%--                        <c:set var="testString" value="${role.name}"/>--%>
-                            <%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
-                            <%--                        <label for="${role.name}"></label>--%>
-                            <%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
-                            <%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
-                            <%--                                checked--%>
-                            <%--                            </c:if>--%>
-                            <%--                        >--%>
-                            <%--                    </c:forEach>--%>
-                    </td>
-                    <td class="priority-1">
-                        <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
-                    </td>
-                </form>
-                <td class="action_forms">
-                    <c:if test="${isSuperAdmin}">
-                    <div>
-                        <form method="post" action="${pageContext.request.contextPath}/admin/delete">
-                            <input type="hidden" value="${user.idUser}" name="idUser">
-                            <button class="delete"><i class="fa-solid fa-user-minus"></i></button>
-                        </form>
-                    </div>
-                    <div>
-                        <form method="post" action="${pageContext.request.contextPath}/admin/upgrade">
-                            <input type="hidden" value="${user.idUser}" name="idUser">
-                            <button class="upgrade"><i class="fa-solid fa-angles-up"></i></button>
-                        </form>
-                    </div>
-                    <div>
-                        <form method="post" action="${pageContext.request.contextPath}/admin/downgrade">
-                            <input type="hidden" value="${user.idUser}" name="idUser">
-                            <button class="downgrade"><i class="fa-solid fa-angles-down"></i></button>
-                        </form>
-                    </div>
-                    </c:if>
-    </div>
-    </td>
-    </tr>
+                                <%--                            <span><c:forEach var="role" items="${user.roles}">--%>
+                                <%--                                ${role.name}--%>
+                                <%--                            </c:forEach></span>--%>
+                                <%--                    <c:forEach var="role" items="${allRoles}">--%>
+                                <%--                        <c:set var="testString" value="${role.name}"/>--%>
+                                <%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
+                                <%--                        <label for="${role.name}"></label>--%>
+                                <%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
+                                <%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
+                                <%--                                checked--%>
+                                <%--                            </c:if>--%>
+                                <%--                        >--%>
+                                <%--                    </c:forEach>--%>
+                        </td>
+                        <td class="priority-1">
+                            <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
+                        </td>
+                    </form>
+                    <c:choose>
+                        <c:when test="${isSuperAdmin && !fn:contains(sRoles,'SUPERADMIN')}">
+                            <td class="action_forms">
+                                <div>
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/delete">
+                                        <input type="hidden" value="${user.idUser}" name="idUser">
+                                        <button class="delete"><i class="fa-solid fa-user-minus"></i></button>
+                                    </form>
+                                </div>
 
-    </c:forEach>
-    </tbody>
-    </table>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td></td>
+                        </c:otherwise>
+                    </c:choose>
+
+                </tr>
+
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </main>
 <footer>

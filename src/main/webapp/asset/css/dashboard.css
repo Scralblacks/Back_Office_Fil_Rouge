@@ -10,9 +10,9 @@ body {
 header {
     width: 100%;
     height: 120px;
-   /* position: absolute;
-    top: 0;
-    left: 0;*/
+    /* position: absolute;
+     top: 0;
+     left: 0;*/
     border-radius: 0 0 var(--md-radius) var(--md-radius);
     background-color: var(--secondary-bg-color);
     z-index: 1;
@@ -70,23 +70,19 @@ main .container .dashboard_introduction h2 {
 }
 
 main .container .dashboard_introduction .dash {
-    height:10px;
+    height: 10px;
     width: 50px;
     background-color: white;
     border-radius: var(--md-radius);
 }
 
 main .container .action_forms {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 0;
-    margin:20px
+    padding: 20px;
 }
 
 main .container table tbody tr .form__field {
     font-family: inherit;
-   /* width: 100%;*/
+    /* width: 100%;*/
     border: 0;
     border-bottom: 2px solid var(--secondary-bg-color);
     outline: 0;
@@ -116,6 +112,7 @@ main .container table tbody td form button.delete {
 main .container table tbody td form button.deactivate {
     background-color: var(--third-bg-color);
 }
+
 main .container table tbody tr button.update {
     background-color: lightgreen;
 }
@@ -128,8 +125,24 @@ main .container table tbody td form button.downgrade {
     background-color: orange;
 }
 
+.activation__field {
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
 
+.activation__field span {
+    margin: 0 20px;
+}
 
+.styled-table tbody tr .flexable_td {
+    display: flex;
+    align-items: center;
+}
+
+.styled-table tbody tr td .superadmin__icon {
+    margin-left: 10px;
+}
 
 
 /* TABLE SMALL DEVICE */
@@ -149,6 +162,7 @@ main .container table tbody td form button.downgrade {
     table, thead, tbody, th, td, tr {
         display: block;
     }
+
     thead tr {
         position: absolute;
         top: -9999px;
@@ -158,7 +172,7 @@ main .container table tbody td form button.downgrade {
     tr {
         border: 1px solid #ccc;
         border-radius: var(--sm-radius);
-        margin:15px;
+        margin: 15px;
     }
 
     td {
@@ -166,7 +180,7 @@ main .container table tbody td form button.downgrade {
         border: none;
         position: relative;
         padding-left: 50%;
-        margin:10px;
+        margin: 10px;
     }
 
     td:before {
@@ -212,6 +226,10 @@ main .container table tbody td form button.downgrade {
         color: var(--secondary-bg-color);
     }
 
+    .styled-table tbody tr td .superadmin__icon {
+        color: var(--secondary-bg-color);
+    }
+
 }
 
 
@@ -227,7 +245,7 @@ main .container table tbody td form button.downgrade {
     display: none;
 }
 
-.toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
+.toggler-wrapper input[type="checkbox"]:checked + .toggler-slider {
     background-color: #44cc66;
 }
 
@@ -255,7 +273,7 @@ main .container table tbody td form button.downgrade {
     display: none;
 }
 
-.toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
+.toggler-wrapper input[type="checkbox"]:checked + .toggler-slider {
     background-color: #44cc66;
 }
 
@@ -284,8 +302,7 @@ main .container table tbody td form button.downgrade {
 }
 
 
-
-.toggler-wrapper.style-1 input[type="checkbox"]:checked+.toggler-slider .toggler-knob {
+.toggler-wrapper.style-1 input[type="checkbox"]:checked + .toggler-slider .toggler-knob {
     left: calc(100% - 19px - 3px);
 }
 
@@ -326,22 +343,32 @@ main .container table tbody td form button.downgrade {
         border-bottom: 1px solid #dddddd;
     }
 
+
     .styled-table tbody tr:nth-of-type(odd) {
         background-color: #f3f3f3;
         color: var(--main-bg-color);
     }
 
+    .styled-table tbody tr:nth-of-type(odd).superadmin__icon {
+        color: var(--main-bg-color)
+    }
+
+    .styled-table tbody tr:nth-of-type(even).superadmin__icon {
+        color: var(--secondary-bg-color)
+    }
+
+
     .styled-table tbody tr:nth-of-type(odd) .form__field {
-        color:var(--main-bg-color);
+        color: var(--main-bg-color);
         border-bottom: 2px solid var(--main-bg-color);
     }
 
     .styled-table tbody tr:nth-of-type(odd) .form__field::placeholder {
-        color:var(--main-bg-color);
+        color: var(--main-bg-color);
     }
 
     .styled-table tbody tr:nth-of-type(even) {
-        color:white;
+        color: white;
     }
 
     .styled-table tbody tr:last-of-type {
@@ -357,7 +384,7 @@ main .container table tbody td form button.downgrade {
 footer {
     position: absolute;
     bottom: 0;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
     color: white;
     margin: 30px;
@@ -366,7 +393,7 @@ footer {
 }
 
 footer .active_pagination_number {
-    padding:5px;
+    padding: 5px;
     background-color: var(--secondary-bg-color);
     color: var(--main-bg-color);
     border-radius: var(--lg-radius);
