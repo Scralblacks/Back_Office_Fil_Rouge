@@ -307,6 +307,10 @@ main .container table tbody td form button.downgrade {
 }
 
 .toggler-wrapper.style-1 .toggler-knob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fourth-bg-color);
     width: calc(25px - 6px);
     height: calc(25px - 6px);
     border-radius: 50%;

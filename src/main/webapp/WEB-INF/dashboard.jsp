@@ -71,9 +71,9 @@
                                     <span>Never</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:set var="date" value="${user.dateLastLogin.toString()}" />
+                                    <c:set var="date" value="${user.dateLastLogin.toString()}"/>
                                     <fmt:parseDate value="${date}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
-                                    <span><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy" /></span>
+                                    <span><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy"/></span>
                                 </c:otherwise>
                             </c:choose>
 
@@ -81,9 +81,13 @@
                         <td class="priority-1">
                             <label class="toggler-wrapper style-1">
                                 <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
-                                       <c:if test="${user.activated}">checked</c:if>   >
+                                       <c:if test="${user.activated}">checked</c:if>
+                                       <c:if test="${admin.idUser eq user.idUser}">disabled</c:if>   >
                                 <div class="toggler-slider">
-                                    <div class="toggler-knob"></div>
+                                    <div class="toggler-knob">
+                                        <c:if test="${admin.idUser eq user.idUser}"><i
+                                                class="fa-solid fa-xmark"></i></c:if>
+                                    </div>
                                 </div>
                             </label>
                         </td>
@@ -91,13 +95,18 @@
                             <c:forEach items="${user.roles}" var="currentRole" varStatus="stat">
                                 <c:set var="sRoles" value="${stat.first ? '' : sRoles} ${currentRole.name}"/>
                             </c:forEach>
+                            <c:set var="isDisabled"
+                                   value="${admin.idUser eq user.idUser || fn:contains(sRoles, 'SUPERADMIN')}"/>
                             <div class="activation__group">
                                 <div class="activation__field">
                                     <label class="toggler-wrapper style-1">
                                         <input type="checkbox" onclick='triggerActivateRole(${user.idUser},1)'
-                                               <c:if test="${fn:contains(sRoles, 'BASIC')}">checked</c:if>   >
+                                               <c:if test="${fn:contains(sRoles, 'BASIC')}">checked</c:if>
+                                               <c:if test="${isDisabled}">disabled</c:if>   >
                                         <div class="toggler-slider">
-                                            <div class="toggler-knob"></div>
+                                            <div class="toggler-knob">
+                                                <c:if test="${isDisabled}"><i class="fa-solid fa-xmark"></i></c:if>
+                                            </div>
                                         </div>
                                     </label>
                                     <span>BASIC</span>
@@ -105,9 +114,12 @@
                                 <div class="activation__field">
                                     <label class="toggler-wrapper style-1">
                                         <input type="checkbox" onclick='triggerActivateRole(${user.idUser},2)'
-                                               <c:if test="${fn:contains(sRoles, 'ADMIN')}">checked</c:if>   >
+                                               <c:if test="${fn:contains(sRoles, 'ADMIN')}">checked</c:if>
+                                               <c:if test="${isDisabled}">disabled</c:if>  >
                                         <div class="toggler-slider">
-                                            <div class="toggler-knob"></div>
+                                            <div class="toggler-knob">
+                                                <c:if test="${isDisabled}"><i class="fa-solid fa-xmark"></i></c:if>
+                                            </div>
                                         </div>
                                     </label>
                                     <span>ADMIN</span>
@@ -118,20 +130,6 @@
                                     <i class="fa-solid fa-medal fa-lg"></i>
                                 </div>
                             </c:if>
-
-                                <%--                            <span><c:forEach var="role" items="${user.roles}">--%>
-                                <%--                                ${role.name}--%>
-                                <%--                            </c:forEach></span>--%>
-                                <%--                    <c:forEach var="role" items="${allRoles}">--%>
-                                <%--                        <c:set var="testString" value="${role.name}"/>--%>
-                                <%--                        <c:set var="testString" value="${user.roles.name}"/>--%>
-                                <%--                        <label for="${role.name}"></label>--%>
-                                <%--                        <input id="${role.name}" type="checkbox" value="${role.name}"--%>
-                                <%--                            <c:if test="${fn:contains(${user.roles.name, role.name})}">--%>
-                                <%--                                checked--%>
-                                <%--                            </c:if>--%>
-                                <%--                        >--%>
-                                <%--                    </c:forEach>--%>
                         </td>
                         <td class="priority-1">
                             <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
