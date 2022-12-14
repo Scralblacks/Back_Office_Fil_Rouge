@@ -78,6 +78,10 @@
                             </c:choose>
 
                         </td>
+                        <c:set var="sRoles" value=""/>
+                        <c:forEach items="${user.roles}" var="currentRole" varStatus="stat">
+                            <c:set var="sRoles" value="${stat.first ? '' : sRoles} ${currentRole.name}"/>
+                        </c:forEach>
                         <td class="priority-1">
                             <label class="toggler-wrapper style-1">
                                 <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
@@ -85,16 +89,13 @@
                                        <c:if test="${admin.idUser eq user.idUser}">disabled</c:if>   >
                                 <div class="toggler-slider">
                                     <div class="toggler-knob">
-                                        <c:if test="${admin.idUser eq user.idUser}"><i
+                                        <c:if test="${admin.idUser eq user.idUser || fn:contains(sRoles, 'SUPERADMIN')}"><i
                                                 class="fa-solid fa-xmark"></i></c:if>
                                     </div>
                                 </div>
                             </label>
                         </td>
                         <td class="flexable_td">
-                            <c:forEach items="${user.roles}" var="currentRole" varStatus="stat">
-                                <c:set var="sRoles" value="${stat.first ? '' : sRoles} ${currentRole.name}"/>
-                            </c:forEach>
                             <c:set var="isDisabled"
                                    value="${admin.idUser eq user.idUser || fn:contains(sRoles, 'SUPERADMIN')}"/>
                             <div class="activation__group">
@@ -132,6 +133,7 @@
                             </c:if>
                         </td>
                         <td class="priority-1">
+                            <input type="hidden" value="${user.idUser}" name="idUser">
                             <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
                         </td>
                     </form>

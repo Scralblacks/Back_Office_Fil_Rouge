@@ -30,7 +30,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         userDao.update(updatedUser);
 
-        resp.sendRedirect(UserListServlet.URL);
+        resp.sendRedirect(UserListServlet.URL + "?page=1");
 
     }
 }
