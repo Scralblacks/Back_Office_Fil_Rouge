@@ -77,7 +77,7 @@ input::placeholder {
     color: var(--main-bg-color);
     padding: 7px 0;
     background: transparent;
-    transition: border-color 0.2s;
+  /*  transition: border-color 0.2s;*/
 }
 
 .form__field::placeholder {
@@ -99,14 +99,14 @@ input::placeholder {
     font-size: 1rem;
     color: var(--third-bg-color);
 }
-
+/*
 .form__field:focus {
     padding-bottom: 6px;
-    font-weight: 700;
+    font-weight: 600;
     border-width: 3px;
 
-}
-
+}*/
+/*
 .form__field:focus ~ .form__label {
     position: absolute;
     top: 0;
@@ -115,7 +115,7 @@ input::placeholder {
     font-size: 1rem;
     color: var(--main-bg-color);
     font-weight: 700;
-}
+}*/
 
 /* reset input */
 .form__field:required, .form__field:invalid {

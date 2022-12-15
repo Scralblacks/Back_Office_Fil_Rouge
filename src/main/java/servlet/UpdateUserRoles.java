@@ -28,10 +28,14 @@ public class UpdateUserRoles extends HttpServlet {
 
         Role role = roleDao.findById(roleId).get();
 
-        if(user.getRoles().contains(role)) {
+        if (user.getRoles().contains(role)) {
             user.getRoles().remove(role);
         } else {
             user.addRole(role);
+        }
+
+        if (user.getRoles().isEmpty()) {
+            user.setActivated(false);
         }
 
         usersDAO.update(user);

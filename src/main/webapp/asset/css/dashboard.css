@@ -140,6 +140,7 @@ main .container table tbody td form button.downgrade {
     align-items: center;
 }
 
+
 .styled-table tbody tr td .superadmin__icon {
     margin-left: 10px;
 }
@@ -199,7 +200,7 @@ main .container table tbody td form button.downgrade {
     }
 
     td:nth-of-type(2):before {
-        content: "Pseudo";
+        content: "Username";
     }
 
     td:nth-of-type(3):before {
@@ -211,7 +212,7 @@ main .container table tbody td form button.downgrade {
     }
 
     td:nth-of-type(5):before {
-        content: "Status";
+        content: "Activated";
     }
 
     td:nth-of-type(6):before {
@@ -228,6 +229,11 @@ main .container table tbody td form button.downgrade {
 
     .styled-table tbody tr td .superadmin__icon {
         color: var(--secondary-bg-color);
+    }
+
+    .styled-table tbody tr td {
+        display: flex;
+        align-items: center;
     }
 
 }
@@ -337,6 +343,7 @@ main .container table tbody td form button.downgrade {
         color: #ffffff;
         text-align: left;
     }
+
 
     .styled-table th,
     .styled-table td {

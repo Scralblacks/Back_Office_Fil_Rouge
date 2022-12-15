@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -65,7 +67,7 @@ public class LoginServlet extends HttpServlet {
                 && user.isPresent()
                 && (user.get().getRoles().contains(admin) || user.get().getRoles().contains(superAdmin))
         ){
-            user.get().setDateLastLogin(LocalDate.now());
+            user.get().setDateLastLogin(LocalDateTime.now());
             usersDAO.update(user.get());
             HttpSession sessionStart = req.getSession();
             System.out.println(sessionStart);

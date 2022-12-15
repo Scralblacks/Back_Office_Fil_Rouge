@@ -36,44 +36,39 @@
         <table class="styled-table">
             <thead>
             <tr>
-                <th class="priority-2">Id</th>
-                <th class="priority-1">Pseudo</th>
-                <th class="priority-1">Email</th>
-                <th class="priority-2">Date of last Login</th>
-                <th class="priority-1">Activated</th>
-                <th class="priority-1">Role</th>
-                <c:choose>
-                    <c:when test="${isSuperAdmin}">
-                        <th class="priority-1" colspan="2">Action</th>
-                    </c:when>
-                    <c:otherwise>
-                        <th class="priority-1" colspan="2">Action</th>
-                    </c:otherwise>
-                </c:choose>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Date of last Login</th>
+                <th>Activated</th>
+                <th>Role</th>
+                <th style="text-align: center">Save</th>
+                <th style="text-align: center">Delete</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="user" items="${users}">
                 <tr>
                     <form method="post" action="${pageContext.request.contextPath}/admin/update">
-                        <td class="priority-2">
+                        <td>
                             <span>${user.idUser}</span>
                         </td>
-                        <td class="priority-1">
+                        <td>
                             <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
                         </td>
-                        <td class="priority-1">
+                        <td>
                             <input class="form__field" type="text" name="email" value="${user.email}">
                         </td>
-                        <td class="priority-1">
+                        <td>
                             <c:choose>
                                 <c:when test="${empty user.dateLastLogin}">
                                     <span>Never</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:set var="date" value="${user.dateLastLogin.toString()}"/>
-                                    <fmt:parseDate value="${date}" pattern="yyyy-MM-dd" var="parsedDate" type="date"/>
-                                    <span><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy"/></span>
+                                    <c:set var="date" value="${user.dateLastLogin}"/>
+                                    <fmt:parseDate value="${date}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate"
+                                                   type="date"/>
+                                    <span><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy HH:mm"/></span>
                                 </c:otherwise>
                             </c:choose>
 
@@ -82,7 +77,7 @@
                         <c:forEach items="${user.roles}" var="currentRole" varStatus="stat">
                             <c:set var="sRoles" value="${stat.first ? '' : sRoles} ${currentRole.name}"/>
                         </c:forEach>
-                        <td class="priority-1">
+                        <td>
                             <label class="toggler-wrapper style-1">
                                 <input type="checkbox" onclick='triggerActivateUser(${user.idUser})'
                                        <c:if test="${user.activated}">checked</c:if>
@@ -132,9 +127,9 @@
                                 </div>
                             </c:if>
                         </td>
-                        <td class="priority-1">
+                        <td>
                             <input type="hidden" value="${user.idUser}" name="idUser">
-                            <button type="submit" class="update"><i class="fa-solid fa-upload"></i></button>
+                            <button type="submit" class="update"><i class="fa-solid fa-floppy-disk"></i></button>
                         </td>
                     </form>
                     <c:choose>
