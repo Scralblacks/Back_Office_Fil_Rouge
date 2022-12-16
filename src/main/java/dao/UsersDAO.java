@@ -39,7 +39,7 @@ public class UsersDAO implements CrudDAO<Users> {
         try {
             TypedQuery<Users> query = em.createQuery("select u from Users u " +
                     "left join fetch u.roles " +
-                    "left join fetch u.share", Users.class).setFirstResult((start -1) * total).setMaxResults(total);
+                    "left join fetch u.share", Users.class).setFirstResult((start -1)).setMaxResults(total);
             users = query.getResultList();
         } catch (Exception e) {
             System.err.println(e.getMessage());

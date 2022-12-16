@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>List of users</title>
+    <title>Agendo - Dashboard Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
@@ -149,9 +149,7 @@
                             <td></td>
                         </c:otherwise>
                     </c:choose>
-
                 </tr>
-
             </c:forEach>
             </tbody>
         </table>
@@ -167,7 +165,6 @@
                 <a href="${pageContext.request.contextPath}/admin/dashbord?page=${page}">${page}</a>
             </c:otherwise>
         </c:choose>
-
     </c:forEach>
 </footer>
 </body>

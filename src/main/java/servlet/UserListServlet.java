@@ -51,7 +51,7 @@ public class UserListServlet extends HttpServlet {
         req.setAttribute("isSuperAdmin", isSuperAdmin);
         req.setAttribute("username", user.getPseudo());
         req.setAttribute("numberPage", numberPages);
-        req.setAttribute("currentPage", pageid);
+        req.setAttribute("currentPage", Integer.parseInt(spageid));
 
         req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/dashboard.jsp").forward(req, resp);
 

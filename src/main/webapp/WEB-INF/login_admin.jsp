@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Agendo - Login Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
