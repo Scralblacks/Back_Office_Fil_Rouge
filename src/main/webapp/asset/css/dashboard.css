@@ -511,3 +511,13 @@ footer a {
 
 
 }
+
+.button-add{
+    background-color: #2A30f1;
+    border-radius: var(--lg-radius);
+    box-shadow: 0 0 12px 0 #0000001A;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+}
