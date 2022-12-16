@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 :root {
     --main-bg-color: #2A303D;
     --secondary-bg-color: #FFFFFF;
@@ -34,14 +36,15 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: "poppins", serif;
+    font-family: 'Inter', serif;
     scroll-behavior: smooth;
 }
 
 body {
     overflow-x: hidden;
     max-width: 1920px;
-    background-color: var(--main-bg-color);
+   /* background-color: var(--main-bg-color);*/
+    background: linear-gradient(216.87deg, #2A303D 21.43%, rgba(42, 48, 61, 0.2) 181.09%);
 }
 
 /*

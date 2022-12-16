@@ -1,7 +1,7 @@
 body {
     overflow-x: hidden;
     max-width: 1920px;
-    background-color: var(--main-bg-color);
+    background: linear-gradient(216.87deg, #2A303D 21.43%, rgba(42, 48, 61, 0.2) 181.09%);;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -87,7 +87,7 @@ main .container table tbody tr .form__field {
     border-bottom: 2px solid var(--secondary-bg-color);
     outline: 0;
     font-size: 1rem;
-    color: var(--secondary-bg-color);
+    color: var(--main-bg-color);
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
@@ -106,7 +106,6 @@ main .container table tbody tr button {
 
 main .container table tbody td form button.delete {
     background-color: var(--btn-delete-color);
-
 }
 
 main .container table tbody td form button.deactivate {
@@ -115,14 +114,6 @@ main .container table tbody td form button.deactivate {
 
 main .container table tbody tr button.update {
     background-color: lightgreen;
-}
-
-main .container table tbody td form button.upgrade {
-    background-color: dodgerblue;
-}
-
-main .container table tbody td form button.downgrade {
-    background-color: orange;
 }
 
 .activation__field {
@@ -157,7 +148,6 @@ main .container table tbody td form button.downgrade {
         font-size: 0.9em;
         font-family: sans-serif;
         width: 100%;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
     table, thead, tbody, th, td, tr {
@@ -195,6 +185,10 @@ main .container table tbody td form button.downgrade {
         color: var(--secondary-bg-color);
     }
 
+    td:before {
+        color:var(--main-bg-color);
+    }
+
     td:nth-of-type(1):before {
         content: "ID";
     }
@@ -223,17 +217,55 @@ main .container table tbody td form button.downgrade {
         content: "Action";
     }
 
-    table tbody td span {
+   /* table tbody td span {
         color: var(--secondary-bg-color);
-    }
+    }*/
 
-    .styled-table tbody tr td .superadmin__icon {
+  /*  .styled-table tbody tr td .superadmin__icon {
         color: var(--secondary-bg-color);
-    }
+    }*/
 
     .styled-table tbody tr td {
         display: flex;
         align-items: center;
+    }
+
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+
+    .styled-table tbody tr:nth-of-type(odd) {
+        background-color: #f3f3f3;
+        color: var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: var(--secondary-bg-color);
+        /*   color: var(--main-bg-color);*/
+    }
+
+    .styled-table tbody tr .superadmin__icon {
+        color: var(--main-bg-color)
+    }
+
+    .styled-table tbody tr:nth-of-type(odd) .form__field {
+        color: var(--main-bg-color);
+        border-bottom: 2px solid var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(odd) .form__field::placeholder {
+        color: var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) .form__field {
+        color: var(--main-bg-color);
+        border-bottom: 2px solid var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) .form__field::placeholder {
+        color: var(--main-bg-color);
     }
 
 }
@@ -360,14 +392,14 @@ main .container table tbody td form button.downgrade {
         color: var(--main-bg-color);
     }
 
-    .styled-table tbody tr:nth-of-type(odd).superadmin__icon {
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: var(--secondary-bg-color);
+     /*   color: var(--main-bg-color);*/
+    }
+
+    .styled-table tbody tr .superadmin__icon {
         color: var(--main-bg-color)
     }
-
-    .styled-table tbody tr:nth-of-type(even).superadmin__icon {
-        color: var(--secondary-bg-color)
-    }
-
 
     .styled-table tbody tr:nth-of-type(odd) .form__field {
         color: var(--main-bg-color);
@@ -378,8 +410,13 @@ main .container table tbody td form button.downgrade {
         color: var(--main-bg-color);
     }
 
-    .styled-table tbody tr:nth-of-type(even) {
-        color: white;
+    .styled-table tbody tr:nth-of-type(even) .form__field {
+        color: var(--main-bg-color);
+        border-bottom: 2px solid var(--main-bg-color);
+    }
+
+    .styled-table tbody tr:nth-of-type(even) .form__field::placeholder {
+        color: var(--main-bg-color);
     }
 
     .styled-table tbody tr:last-of-type {
