@@ -24,12 +24,12 @@
             <div class="container_form">
                 <form method="post" action="${pageContext.request.contextPath}/admin_login">
                     <div class="form__group">
-                        <input class="form__field" id="email" name="email" type="input" placeholder="Email"
+                        <input class="form__field" id="email" name="email" type="text" placeholder="Email"
                                value="fabrice@fabrice.fr" required>
                         <label class="form__label" for="email">Email</label>
                     </div>
                     <div class="form__group">
-                        <input class="form__field" id="password" name="password" type="input" placeholder="Password"
+                        <input class="form__field" id="password" name="password" type="password" placeholder="Password"
                                value="azerty" required>
                         <label class="form__label" for="password">Password</label>
                     </div>

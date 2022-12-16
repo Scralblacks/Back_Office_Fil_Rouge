@@ -36,6 +36,8 @@ public class UpdateUserRoles extends HttpServlet {
 
         if (user.getRoles().isEmpty()) {
             user.setActivated(false);
+        } else {
+            user.setActivated(true);
         }
 
         usersDAO.update(user);

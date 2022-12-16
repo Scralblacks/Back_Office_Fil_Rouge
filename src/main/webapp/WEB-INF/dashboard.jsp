@@ -122,8 +122,9 @@
                                 </div>
                             </div>
                             <c:if test="${fn:contains(sRoles,'SUPERADMIN')}">
-                                <div class="superadmin__icon">
+                                <div class="tooltip superadmin__icon">
                                     <i class="fa-solid fa-medal fa-lg"></i>
+                                    <span class="tooltiptext">Super-Admin</span>
                                 </div>
                             </c:if>
                         </td>
