@@ -58,6 +58,8 @@ public class Users {
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Share> share = new ArrayList<>();
 
+    @OneToMany(mappedBy = "users")
+    private List<Event> events = new ArrayList<>();
 
     public Users() {
     }
@@ -225,6 +227,18 @@ public class Users {
             return false;
 
         return true;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public void addEvent(Event event){
+        this.events.add(event);
     }
 
     @Override

@@ -28,6 +28,10 @@ public class Event {
     @JoinColumn(name="id_planning", referencedColumnName = "id_planning", nullable = false)
     private Planning planning;
 
+    @ManyToOne
+    @JoinColumn(name = "id_event", referencedColumnName = "id_event", nullable = false)
+    private Users user;
+
     public Long getIdEvent() {
         return idEvent;
     }
@@ -87,5 +91,13 @@ public class Event {
 
     public void setPlanning(Planning planning) {
         this.planning = planning;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }
