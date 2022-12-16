@@ -153,6 +153,7 @@
             </c:forEach>
             </tbody>
         </table>
+        <a href="${pageContext.request.contextPath}/admin/add">Add user</a>
     </div>
 </main>
 <footer>
