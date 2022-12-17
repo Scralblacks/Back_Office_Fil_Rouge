@@ -17,14 +17,9 @@
 </head>
 
 <body>
-<header>
-    <div class="container">
-        <span>Bienvenue <c:out value="${username}"/></span>
-        <form class="logout__form" method="post" action="${pageContext.request.contextPath}/logout">
-            <button type="submit"><img src="/asset/img/logout.png" alt=""></button>
-        </form>
-    </div>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="username" value="${username}"/>
+</jsp:include>
 
 <main>
     <div class="container">
@@ -133,8 +128,10 @@
                             <button type="submit" class="update"><i class="fa-solid fa-floppy-disk"></i></button>
                         </td>
                     </form>
+<%--                    <p><c:out value="${sRoles}" /></p>--%>
+<%--                    <p><c:out value="${(!fn:contains(sRoles,'ADMIN') && fn:contains(sRoles,'BASIC') && (admin.idUser ne user.idUser))}" /></p>--%>
                     <c:choose>
-                        <c:when test="${isSuperAdmin && !fn:contains(sRoles,'SUPERADMIN')}">
+                        <c:when test="${(isSuperAdmin && admin.idUser ne user.idUser) || (!fn:contains(sRoles,'ADMIN') && fn:contains(sRoles,'BASIC') && (admin.idUser ne user.idUser))}">
                             <td class="action_forms">
                                 <div>
                                     <form method="post" action="${pageContext.request.contextPath}/admin/delete">

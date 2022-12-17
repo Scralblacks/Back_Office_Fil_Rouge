@@ -25,10 +25,12 @@ public class UpdateUserServlet extends HttpServlet {
 
         Users updatedUser = userDao.findById(updatedId).get();
 
-        updatedUser.setPseudo(updatedPseudo);
-        updatedUser.setEmail(updatedEmail);
+        if (!updatedPseudo.isEmpty() && !updatedEmail.isEmpty()) {
+            updatedUser.setPseudo(updatedPseudo);
+            updatedUser.setEmail(updatedEmail);
+            userDao.update(updatedUser);
+        }
 
-        userDao.update(updatedUser);
 
         resp.sendRedirect(UserListServlet.URL + "?page=1");
 
