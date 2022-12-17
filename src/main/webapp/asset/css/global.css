@@ -38,13 +38,16 @@
     text-decoration: none;
     font-family: 'Inter', serif;
     scroll-behavior: smooth;
+    user-select: none
 }
 
 body {
     overflow-x: hidden;
     max-width: 1920px;
-   /* background-color: var(--main-bg-color);*/
-    background: linear-gradient(216.87deg, #2A303D 21.43%, rgba(42, 48, 61, 0.2) 181.09%);
+    background: linear-gradient(216.87deg, #2A303D 21.43%, rgba(42, 48, 61, 0.2) 181.09%);;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /******* HEADER ********/
@@ -103,6 +106,7 @@ header .container button {
     border-radius: var(--md-radius);
     background-color: var(--fourth-bg-color);
     border: none;
+    cursor: pointer;
 }
 
 header .container button span {
@@ -187,6 +191,15 @@ header .container button img {
     width: 50%;
 }
 
+.form__checkbox {
+    display: flex;
+}
+
+.form__group.form__checkbox span {
+    margin-right: 1em;
+    color: var(--third-bg-color);
+}
+
 .form__field {
     font-family: inherit;
     width: 100%;
@@ -231,5 +244,59 @@ header .container button img {
         width: 100%;
     }
 }
+
+
+/**** SWITCH INPUT ****/
+.toggler-wrapper {
+    display: block;
+    width: 45px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.toggler-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked + .toggler-slider {
+    background-color: #44cc66;
+}
+
+.toggler-wrapper .toggler-slider {
+    background-color: #ccc;
+    position: absolute;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper .toggler-knob {
+    position: absolute;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper.style-1 input[type="checkbox"]:checked + .toggler-slider .toggler-knob {
+    left: calc(100% - 19px - 3px);
+}
+
+.toggler-wrapper.style-1 .toggler-knob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fourth-bg-color);
+    width: calc(25px - 6px);
+    height: calc(25px - 6px);
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background-color: #fff;
+}
+/***************************************/
 
 

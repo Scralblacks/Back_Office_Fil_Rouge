@@ -16,5 +16,14 @@ const triggerActivateRole = (id, idRole) => {
         method: 'POST',
         body: params
     });
-
 }
+
+const closeBtn = document.querySelector(".close.fa-solid.fa-xmark");
+
+const closeAlert = (e) => {
+    e.currentTarget.parentElement.classList.remove('display');
+}
+
+closeBtn.addEventListener('click', closeAlert);
+
+

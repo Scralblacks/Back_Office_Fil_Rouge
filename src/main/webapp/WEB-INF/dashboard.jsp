@@ -150,7 +150,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <a class="ui-button button-add" href="${pageContext.request.contextPath}/admin/add">Add user</a>
     </div>
 </main>
 <footer>

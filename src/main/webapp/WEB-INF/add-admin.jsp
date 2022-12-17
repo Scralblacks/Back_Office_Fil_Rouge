@@ -10,39 +10,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<c:url value="/asset/css/global.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/asset/css/style.css" />" rel="stylesheet" type="text/css">
-    <link href="<c:url value="/asset/css/dashboard.css" />" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="<c:url value="/asset/js/main.js" />"></script>
+    <link href="<c:url value="/asset/css/add.css" />" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/21e53ce249.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <form method="post" action="${pageContext.request.contextPath}/admin/add">
-
-        <div>
-            <label for="pseudo">Pseudo : </label>
-            <input id="pseudo" type="text" name="pseudo" placeholder="Pseudo">
-
-            <label for="email">Email : </label>
-            <input id="email" type="text" name="email" placeholder="email@email.com">
-
-            <label for="password">Password : </label>
-            <input id="password" type="password" name="password" placeholder="Password">
-
-            <label for="setadmin">Set as admin</label>
-            <input id="setadmin" type="checkbox" name="isAdmin" value="true">
+<jsp:include page="header.jsp">
+    <jsp:param name="username" value="${username}"/>
+</jsp:include>
+<main>
+    <div class="container">
+        <div class="user-exists ${isExist ? 'display': ''}">
+            <span>L'utilisateur existe déjà !</span>
+            <i class="close fa-solid fa-xmark"></i>
+        </div>
+        <div class="title">
+            <h2>
+                Create Account
+            </h2>
         </div>
 
-        <div>
-            <label for="city">City's name</label>
-            <input id="city" type="text" name="city" placeholder="Name of City">
+        <form method="post" action="${pageContext.request.contextPath}/admin/add">
+            <div>
+                <div class="form__group">
+                    <input class="form__field" id="pseudo" name="pseudo" value="${pseudo}" type="text"
+                           placeholder="Pseudo" required>
+                    <label class="form__label" for="pseudo">Pseudo</label>
+                    <div class="invalid-input ${nameNotValid ? 'display':''}">
+                        Pseudo is not valid !
+                    </div>
+                </div>
+                <div class="form__group">
+                    <input class="form__field" id="email" name="email" value="${email}" type="text" placeholder="Email"
+                           required>
+                    <label class="form__label" for="email">Email</label>
+                    <div class="invalid-input ${emailNotValid ? 'display':''}">
+                        Email is not valid !
+                    </div>
+                </div>
+                <div class="form__group">
+                    <input class="form__field" id="password" name="password" value="${password}" type="password"
+                           placeholder="Password"
+                           required>
+                    <label class="form__label" for="password">Password</label>
+                    <div class="invalid-input ${passwordNotValid ? 'display':''}">
+                        Password must not be empty and at least 5 characters !
+                    </div>
+                </div>
 
-            <label for="zipcode">City's zip code</label>
-            <input id="zipcode" type="text" name="zip_code" placeholder="Zip code">
-        </div>
+                <div class="form__group form__checkbox">
+                    <span>Set as Admin</span>
+                    <label class="toggler-wrapper style-1">
+                        <input type="checkbox" id="setadmin" name="isAdmin" <c:if test="${isAdmin}">checked</c:if>>
+                        <div class="toggler-slider">
+                            <div class="toggler-knob"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
 
-        <button>Add new user</button>
+            <div>
+                <div class="form__group">
+                    <input class="form__field" id="city" name="city" value="${city}" type="text" placeholder="City"
+                           required>
+                    <label class="form__label" for="city">City</label>
+                    <div class="invalid-input ${cityNotValid ? 'display':''}">
+                        City is not valid !
+                    </div>
+                </div>
+                <div class="form__group">
+                    <input class="form__field" id="zipcode" name="zipCode" value="${zipCode}" type="text"
+                           placeholder="Zip Code" required>
+                    <label class="form__label" for="zipcode">Zip Code</label>
+                    <div class="invalid-input ${postalCodeNotValid ? 'display':''}">
+                        Zipcode is not valid !
+                    </div>
+                </div>
+            </div>
 
-    </form>
+            <button>Add new user</button>
+
+        </form>
+    </div>
+</main>
+
 
 </body>
+<script type="text/javascript" src="<c:url value="/asset/js/main.js" />"></script>
 </html>
