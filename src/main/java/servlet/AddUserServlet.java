@@ -29,19 +29,24 @@ public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-
         req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/add-admin.jsp").forward(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String name = req.getParameter("name");
+        boolean isAdmin;
+        String name = req.getParameter("pseudo");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         String city = req.getParameter("city");
         String postalCode = req.getParameter("zipCode");
+        if (req.getParameter("isAdmin") == null){
+            isAdmin = false;
+        } else {
+            isAdmin = true;
+        }
 
         Users user = new Users(email);
         Address userAddress = new Address(city, postalCode);
@@ -79,7 +84,9 @@ public class AddUserServlet extends HttpServlet {
             user.setPlanning(planning);
             user.setPhoto(null);
             user.addRole(basicRole);
-            user.addRole(adminRole);
+            if (isAdmin){
+                user.addRole(adminRole);
+            }
             user.setActivated(true);
 
             // Adding user to the database
