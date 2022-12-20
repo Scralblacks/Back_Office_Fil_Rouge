@@ -2,8 +2,7 @@ package Entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Event {
@@ -13,8 +12,7 @@ public class Event {
     private Long idEvent;
     @Basic
     @Column(name = "date_created")
-    private LocalDate dateCreated;
-
+    private LocalDateTime dateCreated;
 
     @ManyToOne
     @JoinColumn(name = "id_action", referencedColumnName = "id_action", nullable = false)
@@ -32,6 +30,11 @@ public class Event {
     @JoinColumn(name = "id_user", referencedColumnName = "id_user", nullable = false)
     private Users users;
 
+    public Event(LocalDateTime dateCreated, Action action) {
+        this.dateCreated = dateCreated;
+        this.action = action;
+    }
+
     public Long getIdEvent() {
         return idEvent;
     }
@@ -40,14 +43,17 @@ public class Event {
         this.idEvent = idEvent;
     }
 
-    public LocalDate getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
+    public Event(){
+
+    }
 
     @Override
     public boolean equals(Object o) {

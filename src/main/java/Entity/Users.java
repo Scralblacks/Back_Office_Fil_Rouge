@@ -1,10 +1,7 @@
 package Entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.NaturalIdCache;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -210,6 +207,8 @@ public class Users {
     public void setShare(List<Share> share) {
         this.share = share;
     }
+
+    public void addShare(Share newShare){this.share.add(newShare);}
 
     @Override
     public boolean equals(Object o) {

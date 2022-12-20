@@ -1,6 +1,5 @@
 package Entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;

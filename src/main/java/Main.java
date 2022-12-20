@@ -12,6 +12,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -53,7 +54,7 @@ public class Main {
         if(!verifyUser.isPresent()) {
 
             // Creating him a planning with default name
-            Planning planning = planningDao.create(new Planning("Fabrice's planning", LocalDate.now()));
+            Planning planning = planningDao.create(new Planning("Fabrice's planning", LocalDateTime.now()));
 
             // Getting the basic role (Optional here because we've instanced it above
             Role role = roleDao.findById(1L).get();
@@ -106,7 +107,7 @@ public class Main {
         if(!verifyUser1.isPresent()) {
 
             // Creating him a planning with default name
-            Planning planning1 = planningDao.create(new Planning("Victor's planning", LocalDate.now()));
+            Planning planning1 = planningDao.create(new Planning("Victor's planning", LocalDateTime.now()));
 
             // Getting the basic role (Optional here because we've instanced it above
             Role role = roleDao.findById(1L).get();

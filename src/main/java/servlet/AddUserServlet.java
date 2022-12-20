@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @WebServlet("/admin/add")
@@ -95,7 +96,7 @@ public class AddUserServlet extends HttpServlet {
             if (verifyUser.isEmpty()) {
 
                 // Creating him a planning with default name
-                Planning planning = planningDAO.create(new Planning(name + "'s planning", LocalDate.now()));
+                Planning planning = planningDAO.create(new Planning(name + "'s planning", LocalDateTime.now()));
 
                 // Checking if user address is already registered
                 Optional<Address> address = addressDAO.checkIfExists(userAddress);
