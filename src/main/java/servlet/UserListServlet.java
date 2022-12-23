@@ -49,7 +49,7 @@ public class UserListServlet extends HttpServlet {
         req.setAttribute("users", users);
         req.setAttribute("admin", user);
         req.setAttribute("isSuperAdmin", isSuperAdmin);
-        req.setAttribute("username", user.getPseudo());
+        req.setAttribute("username", user.getUsername());
         req.setAttribute("numberPage", numberPages);
         req.setAttribute("currentPage", Integer.parseInt(spageid));
 

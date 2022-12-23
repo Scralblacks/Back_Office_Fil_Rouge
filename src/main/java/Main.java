@@ -2,6 +2,7 @@ import Entity.*;
 import dao.CrudDAO;
 import dao.DaoFactory;
 import jakarta.persistence.EntityManagerFactory;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.ConnectionManager;
 import utils.Password_Hasher;
 
@@ -70,18 +71,11 @@ public class Main {
             }
 
             // For security purpose, we use a java security lib to hash the user password
-            byte[] hash = new byte[16];
-            try {
-                hash = new Password_Hasher().h_password("azerty");
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (InvalidKeySpecException e) {
-                throw new RuntimeException(e);
-            }
+
 
             // Completing the user entity
-            user.setPseudo("Fabrice");
-            user.setPassword(hash);
+            user.setUsername("Fabrice");
+            user.setPassword(BCrypt.hashpw("azerty", BCrypt.gensalt()));
             user.setAddress(userAddress);
             user.setPlanning(planning);
             user.setPhoto(null);
@@ -133,8 +127,8 @@ public class Main {
             }
 
             // Completing the user entity
-            user1.setPseudo("Victor");
-            user1.setPassword(hash);
+            user1.setUsername("Victor");
+            user1.setPassword(BCrypt.hashpw("azerty", BCrypt.gensalt()));
             user1.setAddress(user1Address);
             user1.setPlanning(planning1);
             user1.setPhoto(null);

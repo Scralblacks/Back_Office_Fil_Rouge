@@ -20,13 +20,13 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Long updatedId = Long.parseLong(req.getParameter("idUser"));
-        String updatedPseudo = req.getParameter("pseudo");
+        String updatedUsername = req.getParameter("username");
         String updatedEmail = req.getParameter("email");
 
         Users updatedUser = userDao.findById(updatedId).get();
 
-        if (!updatedPseudo.isEmpty() && !updatedEmail.isEmpty()) {
-            updatedUser.setPseudo(updatedPseudo);
+        if (!updatedUsername.isEmpty() && !updatedEmail.isEmpty()) {
+            updatedUser.setUsername(updatedUsername);
             updatedUser.setEmail(updatedEmail);
             userDao.update(updatedUser);
         }

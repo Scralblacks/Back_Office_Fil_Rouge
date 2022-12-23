@@ -32,7 +32,7 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Pseudo</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Date of last Login</th>
                 <th>Activated</th>
@@ -49,7 +49,7 @@
                             <span>${user.idUser}</span>
                         </td>
                         <td>
-                            <input class="form__field" type="text" name="pseudo" value="${user.pseudo}">
+                            <input class="form__field" type="text" name="username" value="${user.username}">
                         </td>
                         <td>
                             <input class="form__field" type="text" name="email" value="${user.email}">

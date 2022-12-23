@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.Password_Hasher;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
 
-        if(session != null && session.getAttribute("userId") != null){
+        if (session != null && session.getAttribute("userId") != null) {
             resp.sendRedirect(UserListServlet.URL);
         } else {
             req.getRequestDispatcher("/WEB-INF/login_admin.jsp").forward(req, resp);
@@ -48,32 +49,22 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         boolean isAdmin = false;
 
-        // For security purpose, we use a java security lib to hash the user password
-        byte[] hash = new byte[16];
-        try {
-            hash = new Password_Hasher().h_password(password);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
-
         Role admin = roleDAO.findById(2L).get();
         System.out.println(admin);
         Role superAdmin = roleDAO.findById(3L).get();
         System.out.println(superAdmin);
 
-        if(Arrays.equals(user.get().getPassword(), hash)
+        if (BCrypt.checkpw(password, user.get().getPassword())
                 && user.isPresent()
                 && (user.get().getRoles().contains(admin) || user.get().getRoles().contains(superAdmin))
-        ){
+        ) {
             user.get().setDateLastLogin(LocalDateTime.now());
             usersDAO.update(user.get());
             HttpSession sessionStart = req.getSession();
             System.out.println(sessionStart);
             sessionStart.setAttribute("userId", user.get().getIdUser());
             // Expiration of session after 30min
-            sessionStart.setMaxInactiveInterval(30*60);
+            sessionStart.setMaxInactiveInterval(30 * 60);
             resp.sendRedirect(UserListServlet.URL + "?page=1");
 
         } else {

@@ -32,11 +32,11 @@
         <form method="post" action="${pageContext.request.contextPath}/admin/add">
             <div>
                 <div class="form__group">
-                    <input class="form__field" id="pseudo" name="pseudo" value="${pseudo}" type="text"
-                           placeholder="Pseudo" required>
-                    <label class="form__label" for="pseudo">Pseudo</label>
+                    <input class="form__field" id="username" name="username" value="${username}" type="text"
+                           placeholder="Username" required>
+                    <label class="form__label" for="username">Username</label>
                     <div class="invalid-input ${nameNotValid ? 'display':''}">
-                        Pseudo is not valid !
+                        Username is not valid !
                     </div>
                 </div>
                 <div class="form__group">

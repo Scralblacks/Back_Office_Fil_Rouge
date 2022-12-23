@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.Password_Hasher;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class AddUserServlet extends HttpServlet {
 
         boolean isAdmin;
         boolean formNotValid = false;
-        String name = req.getParameter("pseudo");
+        String name = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         String city = req.getParameter("city");
@@ -77,7 +78,7 @@ public class AddUserServlet extends HttpServlet {
         }
 
         if (formNotValid) {
-            req.setAttribute("pseudo", name);
+            req.setAttribute("username", name);
             req.setAttribute("password", password);
             req.setAttribute("email", email);
             req.setAttribute("isAdmin", isAdmin);
@@ -108,17 +109,9 @@ public class AddUserServlet extends HttpServlet {
                     userAddress = address.get();
                 }
 
-                // For security purpose, we use a java security lib to hash the user password
-                byte[] hash = new byte[16];
-                try {
-                    hash = new Password_Hasher().h_password(password);
-                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                    throw new RuntimeException(e);
-                }
-
                 // Completing the user entity
-                user.setPseudo(name);
-                user.setPassword(hash);
+                user.setUsername(name);
+                user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt(-1)));
                 user.setAddress(userAddress);
                 user.setPlanning(planning);
                 user.setPhoto(null);
