@@ -7,9 +7,10 @@ This project is a part of a collaborative agenda application as an end of format
   
 ## Table of content
 
-  * [Technologies](#technologies)
-  * [Features](#features)
-  * [Start Project](#start-project)
+  * [Technologies](#technologies-)
+  * [Features](#features-)
+  * [Start Project](#start-project-)
+  * [Contributors](#contributor-)
 
 ## Technologies [↑](#back_office_fil_rouge)
 
