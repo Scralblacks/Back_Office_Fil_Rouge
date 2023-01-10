@@ -30,3 +30,8 @@ This project is a part of a collaborative agenda application as an end of format
 ## Start [↑](#back_office_fil_rouge)
 
   Change the port in file server.xml in directory "Tomcat Root"/conf from 8080 to 9090. Start Tomcat serveur with `catalina.bat start` in directory "Tomcat Root"/bin
+
+## Contributor [↑](#back_office_fil_rouge)
+
+* @[FabriceT95](https://github.com/FabriceT95)
+* @[Scralblacks](https://github.com/Scralblacks)
