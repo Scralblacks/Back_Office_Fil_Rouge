@@ -14,7 +14,7 @@ This project is a part of a collaborative agenda application as an end of format
 
 ## Technologies [↑](#back_office_fil_rouge)
 
-  * <img width=50px src="https://www.seekpng.com/png/full/259-2595551_java-logo-transparent-47568-loadtve-jsp-servlet.png" alt="jsp-servlet-icon"> Jsp Servlet
+  * <img width=50px src="https://www.seekpng.com/png/full/259-2595551_java-logo-transparent-47568-loadtve-jsp-servlet.png" alt="jsp-servlet-icon"> [Jsp Servlet](https://www.oracle.com/java/technologies/jspt.html)
   * <img width=50px src="https://cdn.freebiesupply.com/logos/large/2x/hibernate-logo-png-transparent.png" alt="hibernate-icon"> [Hibernate](https://hibernate.org/)
   * <img width=50px src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" alt="mysql-icon"> [MySQL](https://www.mysql.com/)
 
