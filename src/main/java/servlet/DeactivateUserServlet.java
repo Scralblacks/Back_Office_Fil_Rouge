@@ -32,7 +32,7 @@ public class DeactivateUserServlet extends HttpServlet {
 
         usersDAO.update(deactivitedUser);
 
-        resp.sendRedirect(UserListServlet.URL);
+        resp.sendRedirect(UserListServlet.URL + "?page=1");
 
     }
 }
