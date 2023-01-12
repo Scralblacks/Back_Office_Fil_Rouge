@@ -13,8 +13,8 @@
     <div class="container">
         <div class="section">
             <div class="introduction">
-                <h2>Bienvenue Administrateur Agendo</h2>
-                <p>Depuis ton interface, accède à tes droits et aux différents utilisateurs du service.</p>
+                <h2>Welcome Agendo Admin</h2>
+                <p>From your dashboard, access your rights and manage users.</p>
                 <c:if test="${loginFail}">
                     <h1>Log in failed</h1>
                 </c:if>
@@ -34,9 +34,9 @@
                         <label class="form__label" for="password">Password</label>
                     </div>
 
-    <button>Log in</button>
+                    <button>Log in</button>
 
-</form>
+                </form>
             </div>
         </div>
     </div>

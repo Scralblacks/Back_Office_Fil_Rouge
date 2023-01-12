@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
     <div class="container">
-        <span>Bienvenue <%= request.getParameter("username") %></span>
+        <span>Welcome <%= request.getParameter("username") %></span>
         <div class="onglet">
             <ul>
                 <li>
@@ -20,7 +20,7 @@
                 <li>
                     <a href="${pageContext.request.contextPath}/admin/add">
                         <i class="fa-lg fa-solid fa-user-plus"></i>
-                        <span>Nouvel Utilisateur</span>
+                        <span>New User</span>
                     </a>
                 </li>
             </ul>

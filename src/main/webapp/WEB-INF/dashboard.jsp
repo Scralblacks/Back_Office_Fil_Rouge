@@ -25,7 +25,7 @@
     <div class="container">
         <div class="dashboard_introduction">
             <div class="dash"></div>
-            <h2>Gérez les utilisateurs de l'application depuis cette interface.</h2>
+            <h2>Manage users from this interface.</h2>
             <div class="dash"></div>
         </div>
         <table class="styled-table">
@@ -34,7 +34,7 @@
                 <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Date of last Login</th>
+                <th>Last login date</th>
                 <th>Activated</th>
                 <th>Role</th>
                 <th style="text-align: center">Save</th>
@@ -128,8 +128,6 @@
                             <button type="submit" class="update"><i class="fa-solid fa-floppy-disk"></i></button>
                         </td>
                     </form>
-<%--                    <p><c:out value="${sRoles}" /></p>--%>
-<%--                    <p><c:out value="${(!fn:contains(sRoles,'ADMIN') && fn:contains(sRoles,'BASIC') && (admin.idUser ne user.idUser))}" /></p>--%>
                     <c:choose>
                         <c:when test="${(isSuperAdmin && admin.idUser ne user.idUser) || (!fn:contains(sRoles,'ADMIN') && fn:contains(sRoles,'BASIC') && (admin.idUser ne user.idUser))}">
                             <td class="action_forms">

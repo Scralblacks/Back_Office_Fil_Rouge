@@ -20,7 +20,7 @@
 <main>
     <div class="container">
         <div class="user-exists ${isExist ? 'display': ''}">
-            <span>L'utilisateur existe déjà !</span>
+            <span>User already exists !</span>
             <i class="close fa-solid fa-xmark"></i>
         </div>
         <div class="title">
