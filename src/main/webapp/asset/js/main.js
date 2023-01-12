@@ -1,8 +1,7 @@
 const triggerActivateUser = (id) => {
     const params = new URLSearchParams();
     params.append('idUser', id);
-
-    fetch("http://localhost:8080/admin/deactivate", {
+    fetch("http://localhost:9090/admin/deactivate", {
         method: 'POST',
         body: params
     });
@@ -12,7 +11,7 @@ const triggerActivateRole = (id, idRole) => {
     const params = new URLSearchParams();
     params.append('idUser', id);
     params.append('idRole', idRole);
-    fetch("http://localhost:8080/admin/updateUserRoles", {
+    fetch("http://localhost:9090/admin/updateUserRoles", {
         method: 'POST',
         body: params
     });

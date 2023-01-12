@@ -111,7 +111,7 @@ public class AddUserServlet extends HttpServlet {
 
                 // Completing the user entity
                 user.setUsername(name);
-                user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt(-1)));
+                user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
                 user.setAddress(userAddress);
                 user.setPlanning(planning);
                 user.setPhoto(null);

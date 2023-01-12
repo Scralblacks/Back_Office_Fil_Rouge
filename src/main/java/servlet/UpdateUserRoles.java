@@ -42,7 +42,7 @@ public class UpdateUserRoles extends HttpServlet {
 
         usersDAO.update(user);
 
-        resp.sendRedirect(UserListServlet.URL);
+        resp.sendRedirect(UserListServlet.URL + "?page=1");
 
     }
 }
