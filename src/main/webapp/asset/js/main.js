@@ -24,5 +24,3 @@ const closeAlert = (e) => {
 }
 
 closeBtn.addEventListener('click', closeAlert);
-
-

@@ -14,7 +14,6 @@ import java.util.Optional;
 
 public class RoleDAO implements CrudDAO<Role> {
 
-
     @Override
     public List<Role> findAll() {
         EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();
@@ -46,14 +45,11 @@ public class RoleDAO implements CrudDAO<Role> {
         return Optional.of(role);
     }
 
-    // No need
     @Override
     public boolean delete(Long id) {
         return false;
     }
 
-
-    // No need
     @Override
     public Role update(Role element) {
         return null;
@@ -79,7 +75,6 @@ public class RoleDAO implements CrudDAO<Role> {
         return element;
     }
 
-    // No need
     @Override
     public Optional<Role> checkIfExists(Role element) {
         return Optional.empty();

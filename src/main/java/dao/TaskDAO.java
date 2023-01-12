@@ -13,14 +13,11 @@ import java.util.Optional;
 
 public class TaskDAO implements CrudDAO<Task> {
 
-    // No need
     @Override
     public List<Task> findAll() {
         return null;
     }
 
-
-    // No need for now
     @Override
     public Optional<Task> findById(Long id) {
         return Optional.empty();
@@ -95,7 +92,6 @@ public class TaskDAO implements CrudDAO<Task> {
         return element;
     }
 
-    // No need
     @Override
     public Optional<Task> checkIfExists(Task element) {
         return Optional.empty();

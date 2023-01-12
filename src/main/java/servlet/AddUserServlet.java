@@ -87,7 +87,6 @@ public class AddUserServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/add-admin.jsp").forward(req, resp);
         } else {
 
-
             Users user = new Users(email);
             Address userAddress = new Address(city, postalCode);
             Role basicRole = roleDAO.findById(1L).get();
@@ -136,7 +135,7 @@ public class AddUserServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/add-admin.jsp").forward(req, resp);
             }
 
-            resp.sendRedirect(UserListServlet.URL + "?page=1");
+            resp.sendRedirect(UserListServlet.URL);
         }
     }
 }

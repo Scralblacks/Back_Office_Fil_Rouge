@@ -17,9 +17,6 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
-   /* @OneToMany(targetEntity = Users.class)
-    List<Users> usersList = new ArrayList<>();*/
-
     public Address(String city, String postalCode) {
         this.city = city;
         this.postalCode = postalCode;

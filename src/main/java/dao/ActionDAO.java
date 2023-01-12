@@ -44,15 +44,11 @@ public class ActionDAO implements CrudDAO<Action> {
         return Optional.of(action);
     }
 
-
-    // No need
     @Override
     public boolean delete(Long id) {
         return false;
     }
 
-
-    // No need
     @Override
     public Action update(Action element) {
         return null;
@@ -78,7 +74,6 @@ public class ActionDAO implements CrudDAO<Action> {
         return element;
     }
 
-    // No need
     @Override
     public Optional<Action> checkIfExists(Action element) {
         return Optional.empty();

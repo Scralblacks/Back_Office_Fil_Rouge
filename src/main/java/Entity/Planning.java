@@ -33,7 +33,6 @@ public class Planning {
         this.user = user;
     }
 
-
     @OneToMany(targetEntity = Event.class, mappedBy = "planning", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Event> events = new ArrayList<>();
 
@@ -44,7 +43,6 @@ public class Planning {
     public List<Event> getEvents() {
         return events;
     }
-
 
     @OneToMany(targetEntity = Task.class, mappedBy = "planning", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Task> tasks = new ArrayList<>();
@@ -57,10 +55,8 @@ public class Planning {
         return tasks;
     }
 
-
     @OneToMany(mappedBy = "planning", cascade = CascadeType.ALL)
     private Set<Share> share = new HashSet<>();
-
 
     public Planning(String namePlanning, LocalDateTime dateCreated) {
         this.namePlanning = namePlanning;
@@ -131,7 +127,7 @@ public class Planning {
         Planning planning = (Planning) o;
 
         if (idPlanning != planning.idPlanning) return false;
-      //  if (user != planning.user) return false;
+
         if (namePlanning != null ? !namePlanning.equals(planning.namePlanning) : planning.namePlanning != null)
             return false;
         if (dateCreated != null ? !dateCreated.equals(planning.dateCreated) : planning.dateCreated != null)
@@ -145,18 +141,6 @@ public class Planning {
         int result = idPlanning.intValue();
         result = 31 * result + (namePlanning != null ? namePlanning.hashCode() : 0);
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
-      //  result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
-
-   /* @Override
-    public String toString() {
-        return "Planning{" +
-                "idPlanning=" + idPlanning +
-                ", namePlanning='" + namePlanning + '\'' +
-                ", dateCreated=" + dateCreated +
-                ", events=" + events +
-                ", tasks=" + tasks +
-                '}';
-    }*/
 }

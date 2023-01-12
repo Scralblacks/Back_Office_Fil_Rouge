@@ -10,25 +10,21 @@ import java.util.Optional;
 
 public class AddressDAO implements CrudDAO<Address> {
 
-    // No need
     @Override
     public List<Address> findAll() {
         return null;
     }
 
-    // No need for now
     @Override
     public Optional<Address> findById(Long id) {
         return Optional.empty();
     }
 
-    // No need for now
     @Override
     public boolean delete(Long id) {
         return false;
     }
 
-    // No need
     @Override
     public Address update(Address element) {
         return null;
@@ -53,7 +49,6 @@ public class AddressDAO implements CrudDAO<Address> {
         }
         return element;
     }
-
 
     @Override
     public Optional<Address> checkIfExists(Address element) {

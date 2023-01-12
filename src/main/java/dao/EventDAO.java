@@ -12,26 +12,21 @@ import java.util.Optional;
 
 public class EventDAO implements CrudDAO<Event> {
 
-    // No need
     @Override
     public List<Event> findAll() {
         return null;
     }
 
-
-    // No need for now
     @Override
     public Optional<Event> findById(Long id) {
         return Optional.empty();
     }
 
-    // No need for now
     @Override
     public boolean delete(Long id) {
         return false;
     }
 
-    // No need
     @Override
     public Event update(Event element) {
         return null;
@@ -57,7 +52,6 @@ public class EventDAO implements CrudDAO<Event> {
         return element;
     }
 
-    // No need for now
     @Override
     public Optional<Event> checkIfExists(Event element) {
         return Optional.empty();

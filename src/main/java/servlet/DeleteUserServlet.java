@@ -20,6 +20,6 @@ public class DeleteUserServlet extends HttpServlet {
 
         userDao.delete(Long.parseLong(req.getParameter("idUser")));
 
-        resp.sendRedirect(UserListServlet.URL + "?page=1");
+        resp.sendRedirect(UserListServlet.URL);
     }
 }

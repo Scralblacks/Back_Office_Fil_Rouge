@@ -17,7 +17,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/admin/dashbord")
 public class UserListServlet extends HttpServlet {
 
-    public static final String URL = "/admin/dashbord";
+    public static final String URL = "/admin/dashbord?page=1";
     UsersDAO usersDAO = new UsersDAO();
     RoleDAO roleDAO = new RoleDAO();
 
@@ -43,7 +43,6 @@ public class UserListServlet extends HttpServlet {
 
         boolean isSuperAdmin = user.getRoles().contains(superAdmin);
 
-        // List<Users> users = usersDAO.findAll();
         List<Users> users = usersDAO.getChunk(pageid,total);
 
         req.setAttribute("users", users);

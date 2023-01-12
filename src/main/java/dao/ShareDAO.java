@@ -14,14 +14,11 @@ import java.util.Optional;
 
 public class ShareDAO implements CrudDAO<Share> {
 
-    // No need
     @Override
     public List<Share> findAll() {
         return null;
     }
 
-
-    // No need
     @Override
     public Optional<Share> findById(Long id) {
         return Optional.empty();
@@ -103,7 +100,6 @@ public class ShareDAO implements CrudDAO<Share> {
 
     }
 
-    // No need
     @Override
     public Optional<Share> checkIfExists(Share element) {
         return Optional.empty();

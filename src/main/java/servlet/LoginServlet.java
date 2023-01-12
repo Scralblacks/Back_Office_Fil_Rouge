@@ -54,19 +54,23 @@ public class LoginServlet extends HttpServlet {
         Role superAdmin = roleDAO.findById(3L).get();
         System.out.println(superAdmin);
 
-        if (BCrypt.checkpw(password, user.get().getPassword())
-                && user.isPresent()
-                && (user.get().getRoles().contains(admin) || user.get().getRoles().contains(superAdmin))
-        ) {
-            user.get().setDateLastLogin(LocalDateTime.now());
-            usersDAO.update(user.get());
-            HttpSession sessionStart = req.getSession();
-            System.out.println(sessionStart);
-            sessionStart.setAttribute("userId", user.get().getIdUser());
-            // Expiration of session after 30min
-            sessionStart.setMaxInactiveInterval(30 * 60);
-            resp.sendRedirect(UserListServlet.URL + "?page=1");
+        if (user.isPresent()) {
+            if (BCrypt.checkpw(password, user.get().getPassword())
+                    && (user.get().getRoles().contains(admin) || user.get().getRoles().contains(superAdmin))
+            ) {
+                user.get().setDateLastLogin(LocalDateTime.now());
+                usersDAO.update(user.get());
+                HttpSession sessionStart = req.getSession();
+                System.out.println(sessionStart);
+                sessionStart.setAttribute("userId", user.get().getIdUser());
+                // Expiration of session after 30min
+                sessionStart.setMaxInactiveInterval(30 * 60);
+                resp.sendRedirect(UserListServlet.URL);
 
+            } else {
+                req.setAttribute("loginFail", true);
+                doGet(req, resp);
+            }
         } else {
             req.setAttribute("loginFail", true);
             doGet(req, resp);

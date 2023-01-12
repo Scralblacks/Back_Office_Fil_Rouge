@@ -76,7 +76,7 @@ public class Users {
     }
 
 
-    public Users(Long idUser, String username, String email, String password, String photo, Address address, Planning planning) {
+        public Users(Long idUser, String username, String email, String password, String photo, Address address, Planning planning) {
         this.idUser = idUser;
         this.username = username;
         this.email = email;
@@ -167,7 +167,6 @@ public class Users {
     }
 
 
-
     public String getPassword() {
         return password;
     }
@@ -191,7 +190,6 @@ public class Users {
     public void setDateLastLogin(LocalDateTime dateLastLogin) {
         this.dateLastLogin = dateLastLogin;
     }
-
 
     public boolean isActivated() {
         return isActivated;

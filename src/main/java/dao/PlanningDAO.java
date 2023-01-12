@@ -36,7 +36,6 @@ public class PlanningDAO implements CrudDAO<Planning>{
         EntityManagerFactory emf = ConnectionManager.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         Planning planning = null;
-        // Probably needed to add shared people in the query later
         try {
             TypedQuery<Planning> query = em.createQuery("select p from Planning p " +
                     "left join fetch p.tasks " +
@@ -117,7 +116,6 @@ public class PlanningDAO implements CrudDAO<Planning>{
         return element;
     }
 
-    // No need for now
     @Override
     public Optional<Planning> checkIfExists(Planning element) {
         return Optional.empty();

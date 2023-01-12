@@ -46,8 +46,4 @@ public class ShareId implements Serializable {
         result = prime * result + planningId.intValue();
         return result;
     }
-
-
-
-
 }

@@ -21,7 +21,6 @@ public final class ConnectionManager {
         return CONNECTION_INSTANCE;
     }
 
-
     public static void closeConnection() {
         try {
             CONNECTION_INSTANCE.close();

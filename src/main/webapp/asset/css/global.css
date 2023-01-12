@@ -149,10 +149,8 @@ header .container button img {
     }
 
     header .container ul li:hover span {
-        color:var(--secondary-bg-color);
+        color: var(--secondary-bg-color);
     }
-
-
 
     header .container ul li i {
         margin:20px;
@@ -210,7 +208,6 @@ header .container button img {
     color: var(--main-bg-color);
     padding: 7px 0;
     background: transparent;
-  /*  transition: border-color 0.2s;*/
 }
 
 .form__field::placeholder {
@@ -298,5 +295,3 @@ header .container button img {
     background-color: #fff;
 }
 /***************************************/
-
-

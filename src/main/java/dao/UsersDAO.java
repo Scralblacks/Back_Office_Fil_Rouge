@@ -71,8 +71,6 @@ public class UsersDAO implements CrudDAO<Users> {
         Users user = null;
         try {
             TypedQuery<Users> query = em.createQuery("select u from Users u " +
-                  /*  "join fetch u.planning " +
-                    "join fetch u.address " +*/
                     "left join fetch u.roles " +
                     "left join fetch u.share " +
                     "WHERE u.idUser=:id",

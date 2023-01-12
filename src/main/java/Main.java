@@ -72,7 +72,6 @@ public class Main {
 
             // For security purpose, we use a java security lib to hash the user password
 
-
             // Completing the user entity
             user.setUsername("Fabrice");
             user.setPassword(BCrypt.hashpw("azerty", BCrypt.gensalt()));
@@ -148,41 +147,6 @@ public class Main {
         } else {
             System.out.println("User already exists !");
         }
-
-       /* while (true) {
-            System.out.println("1 - Voir le planning et ses tâches");
-            System.out.println("2 - Voir une tâche en particulier");
-            System.out.println("3 - Voir les utilisateurs");
-            System.out.println("4 - Créer un utilisateur");
-            System.out.println("5 - Créer une tâche pour un planning");
-            System.out.println("6 - Supprimer une tâche");
-            System.out.println("7 - Modifier une tâche");
-
-            int choix = recupererEntier("");
-            switch (choix) {
-                case 1 :
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    List<Users> users = userDao.findAll();
-                    if(!users.isEmpty()) {
-                        for (int i = 0; i < users.size(); i++) {
-                            System.out.println((i + 1) + " - " + users.get(i).getPseudo());
-                        }
-                    } else {
-                        System.out.println("Empty !");
-                    }
-                    break;
-
-
-            }
-
-        }*/
-
-
     }
 
     public static int recupererEntier(String message){

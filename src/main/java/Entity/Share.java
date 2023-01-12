@@ -70,8 +70,6 @@ public class Share {
         this.isReadOnly = isReadOnly;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,11 +77,8 @@ public class Share {
 
         Share share = (Share) o;
 
-      //  if (user_planning_id != share.user_planning_id) return false;
         if (isReadOnly != share.isReadOnly) return false;
 
         return true;
     }
-
-
 }

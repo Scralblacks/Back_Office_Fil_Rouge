@@ -21,9 +21,6 @@ public class Role {
             inverseJoinColumns = @JoinColumn( name = "id_user" ) )
     private Set<Users> users = new HashSet<>();
 
-   /* @ManyToOne @JoinColumn(name="id_user")
-    private Users users;*/
-
     public Long getIdRole() {
         return idRole;
     }
@@ -74,6 +71,4 @@ public class Role {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
-
-
 }
